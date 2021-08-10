@@ -88,7 +88,7 @@ pyfi add outlet -n proc3.outlet1 -q pyfi.queue3 -pn proc3
 
 Here are some sample help screens from the CLI.
 
-Top level pyfi help screen
+**Top level pyfi help screen**
 ```bash
 $ pyfi
 Usage: pyfi [OPTIONS] COMMAND [ARGS]...
@@ -116,7 +116,7 @@ Commands:
   update     Update a database object
   web        Web server admin
 ```
-Adding various objects to the PYFI network database
+**Adding various objects to the PYFI network database**
 ```bash
 $ pyfi add
 Usage: pyfi add [OPTIONS] COMMAND [ARGS]...
@@ -139,7 +139,7 @@ Commands:
   user       Add user object to the database
 ```
 
-Running & managing distributed processors
+**Running & managing distributed processors**
 ```bash
 $ pyfi proc
 Usage: pyfi proc [OPTIONS] COMMAND [ARGS]...
@@ -159,7 +159,7 @@ Commands:
   stop     Stop a processor
 ```
 
-Listing objects in the database
+**Listing objects in the database**
 ```bash
 $ pyfi ls
 Usage: pyfi ls [OPTIONS] COMMAND [ARGS]...
