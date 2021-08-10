@@ -48,6 +48,138 @@ There are some important enterprise qualities we want from the logical database 
 Coupling the PYFI physical network from the logical model through a transactional databases allows for future implementation-independence of a particular PYFI network.
 All the existing PYFI CLI tools that operate on the database will continue to work as is, if you choose to implement a different backend.
 
+### Command Line Control
+
+One of the design goals for PYFI was to allow both Graphical and Command line User Interfaces. A CLI will open up access to various server-side automations, devops pipelines and human sysops that can interact with the PYFI network through a remote console.
+
+All constructs within PYFI can be created, deleted, updated or otherwise managed via the CLI as well as the GUI, again, adhering to the principle that architecture is logically designed and loosely coupled in ways that enable more freedom and technology independence if desired.
+
+Here is a sample script that builds a distributed flow using just the CLI
+
+```bash
+
+pyfi add node -n node1 -h phoenix
+pyfi add node -n node2 -h radiant 
+pyfi add node -n node3 -h miko
+pyfi add scheduler --name sched1
+
+pyfi scheduler -n sched1  add --node node1
+pyfi scheduler -n sched1  add --node node2
+pyfi scheduler -n sched1  add --node node3
+
+pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -t do_something
+pyfi add queue -n pyfi.queue1 -t direct
+pyfi add queue -n pyfi.queue2 -t direct
+pyfi add queue -n pyfi.queue3 -t direct
+
+pyfi add outlet -n proc1.outlet1 -q pyfi.queue1 -pn proc1
+pyfi add plug -n plug1 -q pyfi.queue2 -pn proc1
+pyfi add plug -n plug3 -q pyfi.queue3 -pn proc1
+pyfi add processor -n proc2 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -t do_this -h radiant
+pyfi add outlet -n proc2.outlet1 -q pyfi.queue2 -pn proc2
+
+pyfi add processor -n proc4 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -t do_something -h radiant
+pyfi add outlet -n proc4.outlet1 -q pyfi.queue1 -pn proc4
+
+pyfi add processor -n proc3 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -t do_this -h miko
+pyfi add outlet -n proc3.outlet1 -q pyfi.queue3 -pn proc3
+
+```
+
+Here are some sample help screens from the CLI.
+
+Top level pyfi help screen
+```bash
+$ pyfi
+Usage: pyfi [OPTIONS] COMMAND [ARGS]...
+
+  Pyfi CLI for managing the pyfi network
+
+Options:
+  --debug         Debug switch
+  -d, --db TEXT   Database URI
+  -i, --ini TEXT  PYFI .ini configuration file
+  -c, --config    Configure pyfi
+  --help          Show this message and exit.
+
+Commands:
+  add        Add an object to the database
+  agent      Run pyfi agent
+  api        API server admin
+  db         Database operations
+  delete     Delete an object from the database
+  ls         List database objects
+  node       Node management operations
+  proc       Run or manage processors
+  scheduler  Scheduler management commands
+  task       Pyfi task management
+  update     Update a database object
+  web        Web server admin
+```
+Adding various objects to the PYFI network database
+```bash
+$ pyfi add
+Usage: pyfi add [OPTIONS] COMMAND [ARGS]...
+
+  Add an object to the database
+
+Options:
+  --id TEXT  ID of object being added
+  --help     Show this message and exit.
+
+Commands:
+  agent      Add agent object to the database
+  node       Add node object to the database
+  outlet     Add outlet to a processor
+  plug       Add plug to a processor
+  processor  Add processor to the database
+  queue      Add queue object to the database
+  role       Add role object to the database
+  scheduler  Add scheduler object to the database
+  user       Add user object to the database
+```
+
+Running & managing distributed processors
+```bash
+$ pyfi proc
+Usage: pyfi proc [OPTIONS] COMMAND [ARGS]...
+
+  Run or manage processors
+
+Options:
+  --id TEXT  ID of processor
+  --help     Show this message and exit.
+
+Commands:
+  pause    Pause a processor
+  remove   Remove a processor
+  restart  Start a processor
+  resume   Pause a processor
+  start    Start a processor
+  stop     Stop a processor
+```
+
+Listing objects in the database
+```bash
+$ pyfi ls
+Usage: pyfi ls [OPTIONS] COMMAND [ARGS]...
+
+  List database objects
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  agents      List agents
+  nodes       List queues
+  outlets     List outlets
+  plugs       List agents
+  processors  List processors
+  queues      List queues
+  schedulers  List queues
+  users       List users
+  workers     List workers
+```
 ### Advanced UI
 
 PYFI uses a custom built, modern User Interface derived from the core design of NIFI but extended in meaningful ways. You can preview the PYFI UI in the [pyfi-ui](#https://github.com/radiantone/pyfi-ui) repository.
