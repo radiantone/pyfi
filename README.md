@@ -183,7 +183,7 @@ Commands:
 ```
 ### Advanced UI
 
-PYFI uses a custom built, modern User Interface derived from the core design of NIFI but extended in meaningful ways. You can preview the PYFI UI in the [pyfi-ui](#https://github.com/radiantone/pyfi-ui) repository.
+PYFI uses a custom built, modern User Interface derived from the core design of NIFI but extended in meaningful ways. You can preview the PYFI UI in the [pyfi-ui](https://github.com/radiantone/pyfi-ui) repository.
 
 **Real Time Streaming Analytics**
 ![screen1](./screens/pyfi7.png)
