@@ -14,7 +14,7 @@ Using the power of reliable, transactional messaging, compute tasks are never lo
 
 ## Design Goals
 
-As the name suggests, PYFI is a spiritual offshoot of Apache NIFI, which is a visual dataflow engine that runs inside a Java virtual machine.
+As the name suggests, PYFI is a spiritual offshoot of [Apache NIFI](#https://nifi.apache.org/) except built using a python stack for running python (and other scripting languages) processors.
 However, PYFI is designed to be more broad in terms of design and scope which we will discuss below.
 
 Some important design goals for this technology are:
