@@ -20,7 +20,7 @@ However, PYFI is designed to be more broad in terms of design and scope which we
 Some important design goals for this technology are:
 
 1. **Fault-Tolerant** - PYFI runs as a distributed network of logical compute processors that have redundancy and load-balancing built in.
-2. **At-Scale** - This phrase is important. It means that the logical constructs (e.g. pyfi processors) run at the scale of the hardware (e.g. CPU processors), or physical constructs with impedence.
+2. **At-Scale** - This phrase is important. It indicates that the logical constructs (e.g. pyfi processors) run at the scale of the hardware (e.g. CPU processors), meaning there is a 1-1 correlation (physical mapping) between hardware processors and pyfi processors.
 3. **Secure** - All the functional components in PYFI (database, broker, storage, cache) have security built in.
 4. **Dynamic** - The topology and behavior of a PYFI network can be adjusted and administered in real-time without taking down the entire network. Because PYFI is not a single VM controlling everything, you can add/remove update components without negatively impacting the functionality of the system.
 5. **Distributed** - As was mentioned above, everything in PYFI is inherently distributed, down to the processors. There is no physical centralization of any kind. 
@@ -89,6 +89,7 @@ pyfi add outlet -n proc3.outlet1 -q pyfi.queue3 -pn proc3
 Here are some sample help screens from the CLI.
 
 **Top level pyfi help screen**
+
 ```bash
 $ pyfi
 Usage: pyfi [OPTIONS] COMMAND [ARGS]...
