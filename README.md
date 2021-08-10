@@ -2,6 +2,7 @@
 
 A distributed data flow and computation system that runs on transactional messaging infrastructure.
 
+*NOTE: This repo will initially contain the core design documentation for PYFI but eventually I will commit the code here. Currently looking for sponsors to support the effort. If curious or interested, please reach out to me at darren@ontrenet.com.*
 ## Introduction
 PYFI differs from other dataflow engines in that it is fully distributed and runs "at-scale" across heterogeneous infrastructure and computational resources.
 
