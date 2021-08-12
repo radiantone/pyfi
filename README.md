@@ -11,8 +11,15 @@ It establishes a logical directed-acyclic-graph (DAG) overlay network across com
 Using the power of reliable, transactional messaging, compute tasks are never lost, discarded or undone. Fault tolerance and load-balancing are intrinsic qualities of PYFI and not tacked on as a separate process, which itself would be a failure point.
 
 ## High-Level Architecture
+The following diagram shows one cross-section of the current *reference implementation* of PYFI. Since everything behind the database can be implemented in a variety of ways, this architecture is not absolute.
+
 ![architecture1](./screens/architecture1.png)
 
+## Tech Stack
+The following diagram shows the technology stack for the reference implementation. It uses entirely FOSS software that is mature, open and in most cases supported by a commercial entity.
+All of these components provide instant, out-of-the-box functionality that contributes to the PYFI system ensemble in some way.
+
+![techstack](./screens/techstack.png)
 ## Design Goals
 
 As the name suggests, PYFI is a spiritual offshoot of [Apache NIFI](https://nifi.apache.org/) except built using a python stack for running python (and other scripting languages) processors.
