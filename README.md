@@ -17,7 +17,7 @@ The following diagram shows one cross-section of the current *reference implemen
 
 ## Tech Stack
 The following diagram shows the technology stack for the reference implementation. It uses entirely FOSS software that is mature, open and in most cases supported by a commercial entity.
-All of these components provide instant, out-of-the-box functionality that contributes to the PYFI system ensemble in some way.
+All of these components provide instant, out-of-the-box functionality that contributes to the PYFI system ensemble and have proven their usefulness in enterprise production settings.
 
 ![techstack](./screens/techstack.png)
 ## Design Goals
