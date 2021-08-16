@@ -10,6 +10,26 @@ It establishes a logical directed-acyclic-graph (DAG) overlay network across com
 
 Using the power of reliable, transactional messaging, compute tasks are never lost, discarded or undone. Fault tolerance and load-balancing are intrinsic qualities of PYFI and not tacked on as a separate process, which itself would be a failure point.
 
+## Outline
+
+*Under Construction*
+
+* [Overview](#overview)
+* [High Level Architecture](#high-level-architecture)
+* [Tech Stack](#tech-stack)
+* [Design Goals](#design-goals)  
+* [Detailed Architecture](#detailed-architecture)
+  * [Why A SQL Database?](#why-a-sql-database)
+  * [Data Model](#data-model)
+* [Command Line Interface](#command-line-interface)  
+* [System Objects](#system-objects)
+  * [Nodes](#nodes)
+  * [Agents](#agents)
+  * [Processors](#processors)
+  * [Workers](#workers)
+  * [Tasks](#tasks)
+* [Building Dataflows](#building-dataflows)
+
 ## High-Level Architecture
 The following diagram shows one cross-section of the current *reference implementation* of PYFI. Since everything behind the database can be implemented in a variety of ways, this architecture is not absolute.
 
@@ -56,7 +76,11 @@ There are some important enterprise qualities we want from the logical database 
 Coupling the PYFI physical network from the logical model through a transactional databases allows for future implementation-independence of a particular PYFI network.
 All the existing PYFI CLI tools that operate on the database will continue to work as is, if you choose to implement a different backend.
 
-### Command Line Control
+### Data Model
+
+![datamodel](./screens/pyfi-data-model.png)
+
+## Command Line Interface
 
 One of the design goals for PYFI was to allow both Graphical and Command line User Interfaces. A CLI will open up access to various server-side automations, devops pipelines and human sysops that can interact with the PYFI network through a remote console.
 
@@ -202,19 +226,4 @@ PYFI uses a custom built, modern User Interface derived from the core design of 
 **Advanced Workflows with Embedded Subflows**
 ![screen1](./screens/screen16.png)
 
-## Outline
-
-*Under Construction*
-
-* [Overview](#overview)
-* [Design Goals](#design-goals)  
-* [Architecture](#architecture)
-  * [Models](#models)
-    * [Nodes](#nodes)
-    * [Agents](#agents)
-    * [Processors](#processors)
-    * [Workers](#workers)
-    * [Tasks](#tasks)
-* [CLI](#cli)  
-* [Building Dataflows](#building-dataflows)
-
+## Data Model
