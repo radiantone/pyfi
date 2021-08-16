@@ -1,6 +1,6 @@
 ![logo](./screens/pyfi.svg)
 
-A distributed data flow and computation system that runs on transactional messaging infrastructure.
+A distributed data flow and computation system that runs on transactional messaging infrastructure. It is designed to operate as a NVM Networked-Virtual-Machine by implementing distributed logic over hardware CPU/GPU processors and is suitable for all kinds of computational tasks.
 
 *NOTE: This repo will initially contain the core design documentation for PYFI but eventually I will commit the code here. Currently looking for sponsors to support the effort. If curious or interested, please reach out to me at darren@ontrenet.com.*
 ## Introduction
