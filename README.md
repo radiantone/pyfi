@@ -225,5 +225,3 @@ PYFI uses a custom built, modern User Interface derived from the core design of 
 
 **Advanced Workflows with Embedded Subflows**
 ![screen1](./screens/screen16.png)
-
-## Data Model
