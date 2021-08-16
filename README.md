@@ -57,7 +57,7 @@ Some important design goals for this technology are:
 8. **Scalability** - Processors can scale across CPUs, Machines and networks, consuming message traffic off the same or multiple persistent queues. In fact, PYFI can auto-scale processors to accommodate the swell of tasks arriving on a queue. In addition, pyfi processors will be automatically balanced across physical locations to evenly distribute computational load and reduce local resource contention.
 9. **Pluggable Backends** - PYFI supports various implementations of backend components such as message (e.g. RabbitMQ, SQS) or result storage (SQL, Redis, S3) in addition to allowing you to implement an entire backend (behind the SQL database) yourself.
 10. **Real-time Metrics** - PYFI processors will support real-time broadcasting of data throughput metrics via subscription web-sockets. This will allow for all kinds of custom integrations and front-end visualizations to see what the network is doing.
-11. **Data Analysis** - One of the big goals for PYFI is to save important data metrics about the flows and usages so it can be mined by perdictive AI models later. This will give your organization key insights into the movement patterns of data.
+11. **Data Analysis** - One of the big goals for PYFI is to save important data metrics about the flows and usages so it can be mined by predictive AI models later. This will give your organization key insights into the movement patterns of data.
 12. **GIT Integration** - All the code used by processors can be pulled from your own git repositories giving you instant integration into existing devops and CM processes. PYFI will let you select which repo and commit version you want a processor to execute code from in your flows.
 
 ## Detailed Architecture
@@ -67,11 +67,11 @@ Some of you might be asking why a SQL database is the center abstraction point o
 
 There are some important enterprise qualities we want from the logical database that governs the structure and behavior of a PYFI network.
 
-* ***Constraints*** - PYFI data models should adhere to logical constraints that maintain the integrity of the network design. This prevents any errors in the data model that might cause the network to not perform.
-* ***Transactions*** - Similar to the nature of the message/task layer, we want to provide transactional semantics to the data layer so sets of logical changes can be applied in an atomic fashion - enforcing constraints as well.
-* ***Security*** - Row level security is built into the database and allows us to control who is able to see what without having to implement a weaker form of this at the application layer
+* ***Constraints*** - PYFI data models should adhere to logical constraints that maintain the integrity of the network design. This prevents any errors in the data model that might cause the network to not perform. It also protects against any errors introduced by humans.
+* ***Transactions*** - Similar to the nature of the message/task layer, we want to provide transactional semantics to the data layer so sets of logical changes can be applied in an atomic fashion. This ensures your network is not caught in an inconsistent (or partial) state when making design changes.
+* ***Security*** - Row level security is built into the database and allows us to control who is able to see what without having to implement a weaker form of this at the application layer. By design, the pyfi stack captures access control semantics ***all the way down to the data**.* 
 * ***Scaling*** - SQL databases such as Postgres have mature scaling mechanics that allow them to cluster and scale appropriately.
-* ***Administration*** - Mature tools exist to administer and manage SQL databases that don't need to be reinvented
+* ***Administration*** - Mature tools exist to administer and manage SQL databases that don't need to be reinvented.
 
 Coupling the PYFI physical network from the logical model through a transactional databases allows for future implementation-independence of a particular PYFI network.
 All the existing PYFI CLI tools that operate on the database will continue to work as is, if you choose to implement a different backend.
