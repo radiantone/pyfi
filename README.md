@@ -83,7 +83,7 @@ All the existing PYFI CLI tools that operate on the database will continue to wo
 
 The data model is the system abstraction behind which the PYFI reference implementation operates. Services monitor the data models and reflect the semantics of the data in the PYFI network state.
 
-For example, if a processor model *requested_status* is changed set to "STOPPED" then the agent responsible for that processor will stop the processor and put its *status* field to "STOPPED".
+For example, if a processor model *requested_status* is changed to "STOPPED" then the agent responsible for that processor will stop the processor and put its *status* field to "STOPPED".
 
 Simply put, the PYFI network "reacts" to the current state of the database.
 
