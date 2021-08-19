@@ -76,7 +76,7 @@ There are some important enterprise qualities we want from the logical database 
 * ***Scaling*** - SQL databases such as Postgres have mature scaling mechanics that allow them to cluster and scale appropriately.
 * ***Administration*** - Mature tools exist to administer and manage SQL databases that don't need to be reinvented.
 
-Coupling the PYFI physical network from the logical model through a transactional databases allows for future implementation-independence of a particular PYFI network.
+Coupling the PYFI physical network from the logical model through a transactional database allows for future implementation-independence of a particular PYFI network.
 All the existing PYFI CLI tools that operate on the database will continue to work as is, if you choose to implement a different backend.
 
 ### Data Model
