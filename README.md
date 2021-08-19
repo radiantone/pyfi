@@ -91,7 +91,7 @@ Simply put, the PYFI network "reacts" to the current state of the database.
 
 ### Security Model
 
-PYFI uses a fine grained access control model for user actions against the data model. At the database level this is also enforced with RLS (Row Level Security) features of Postgres (or your database of choice).
+PYFI uses a fine grained access control model for user actions against the data model (via UI or CLI or API). At the database level this is also enforced with RLS (Row Level Security) features of Postgres (or your database of choice).
 It is vital to the security model of PYFI to implement access control all the way through the stack down to the row data.
 
 Using the CLI you can add and remove privileges for individual users and view their current privileges.
