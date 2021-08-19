@@ -21,6 +21,7 @@ Using the power of reliable, transactional messaging, compute tasks are never lo
 * [Detailed Architecture](#detailed-architecture)
   * [Why A SQL Database?](#why-a-sql-database)
   * [Data Model](#data-model)
+  * [Security Model](#security-model)
 * [Command Line Interface](#command-line-interface)  
 * [System Objects](#system-objects)
   * [Nodes](#nodes)
@@ -88,6 +89,121 @@ Simply put, the PYFI network "reacts" to the current state of the database.
 
 ![datamodel](./screens/pyfi-data-model.png)
 
+### Security Model
+
+PYFI uses a fine grained access control model for user actions against the data model. At the database level this is also enforced with RLS (Row Level Security) features of Postgres (or your database of choice).
+It is vital to the security model of PYFI to implement access control all the way through the stack down to the row data.
+
+Using the CLI you can add and remove privileges for individual users and view their current privileges.
+
+```python
+$ pyfi add privilege --user darren --name DELETE
+
+# You can only add privileges that are named in the list of rights further below. Trying to add something not in this list will result in an error.
+
+$ pyfi ls user --name darren
++--------+--------------------------------------+----------+------------+
+|  Name  |                  ID                  |  Owner   |   Email    |
++--------+--------------------------------------+----------+------------+
+| darren | a725b5ff-bb60-401a-a79a-7bfcb87dfc93 | postgres | d@some.com |
++--------+--------------------------------------+----------+------------+
+Privileges
++--------+--------+----------------------------+----------+
+|  Name  | Right  |        Last Updated        |    By    |
++--------+--------+----------------------------+----------+
+| darren | CREATE | 2021-08-18 08:59:42.749164 | postgres |
+| darren | DELETE | 2021-08-19 08:36:29.922190 | postgres |
++--------+--------+----------------------------+----------+
+```
+
+Here is an initial list of the privileges ("rights") that can be assigned to a user.
+
+```python
+
+rights = [  'ALL',
+            'CREATE',
+            'READ',
+            'UPDATE',
+            'DELETE',
+
+            'DB_DROP',
+            'DB_INIT',
+
+            'START_AGENT',
+
+            'RUN_TASK',
+            'CANCEL_TASK',
+
+            'UPDATE_PROCESSOR',
+            'DELETE_PROCESSOR',
+            'START_PROCESSOR',
+            'STOP_PROCESSOR',
+            'PAUSE_PROCESSOR',
+            'RESUME_PROCESSOR',
+            'LOCK_PROCESSOR',
+            'UNLOCK_PROCESSOR',
+            'VIEW_PROCESSOR',
+            'VIEW_PROCESSOR_CONFIG',
+            'VIEW_PROCESSOR_CODE',
+            'EDIT_PROCESSOR_CONFIG',
+            'EDIT_PROCESSOR_CODE'
+
+            'LS_PROCESSORS',
+            'LS_USERS',
+            'LS_USER',
+            'LS_PLUGS',
+            'LS_SOCKETS',
+            'LS_QUEUES',
+            'LS_AGENTS',
+            'LS_NODES',
+            'LS_SCHEDULERS',
+            'LS_WORKERS',
+
+            'ADD_PROCESSOR',
+            'ADD_AGENT',
+            'ADD_NODE',
+            'ADD_PLUG',
+            'ADD_PRIVILEGE',
+            'ADD_QUEUE',
+            'ADD_ROLE',
+            'ADD_SCHEDULER',
+            'ADD_SOCKET',
+            'ADD_USER',
+
+            'UPDATE_PROCESSOR',
+            'UPDATE_AGENT',
+            'UPDATE_NODE',
+            'UPDATE_PLUG',
+            'UPDATE_PRIVILEGE',
+            'UPDATE_QUEUE',
+            'UPDATE_ROLE',
+            'UPDATE_SCHEDULER',
+            'UPDATE_SOCKET',
+            'UPDATE_USER',
+
+            'DELETE_PROCESSOR',
+            'DELETE_AGENT',
+            'DELETE_NODE',
+            'DELETE_PLUG',
+            'DELETE_PRIVILEGE',
+            'DELETE_QUEUE',
+            'DELETE_ROLE',
+            'DELETE_SCHEDULER',
+            'DELETE_SOCKET',
+            'DELETE_USER',
+
+            'READ_PROCESSOR',
+            'READ_AGENT',
+            'READ_NODE',
+            'READ_PLUG',
+            'READ_PRIVILEGE',
+            'READ_QUEUE',
+            'READ_ROLE',
+            'READ_SCHEDULER',
+            'READ_SOCKET',
+            'READ_USER'
+            ]
+```
 ## Command Line Interface
 
 One of the design goals for PYFI was to allow both Graphical and Command line User Interfaces. A CLI will open up access to various server-side automations, devops pipelines and human sysops that can interact with the PYFI network through a remote console.
