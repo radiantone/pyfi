@@ -30,6 +30,7 @@ Using the power of reliable, transactional messaging, compute tasks are never lo
   * [Workers](#workers)
   * [Tasks](#tasks)
 * [Building Dataflows](#building-dataflows)
+* [Stack Tools](#stack-tools)
 
 ## High-Level Architecture
 The following diagram shows one cross-section of the current *reference implementation* of PYFI. Since everything behind the database can be implemented in a variety of ways, this architecture is not absolute.
@@ -349,3 +350,49 @@ PYFI uses a custom built, modern User Interface derived from the core design of 
 
 **Advanced Workflows with Embedded Subflows**
 ![screen1](./screens/screen16.png)
+
+## Stack Tools
+
+The follow section shows screenshots of the tech stack UI tools.
+
+### pgAdmin
+
+pgadmin is the UI for postgres.
+
+![pgadmin](./screens/pgadmin.png)
+
+### Portainer
+
+Manage your docker container stack
+
+![portainer](./screens/portainer.png)
+
+### Redis Insights
+
+Manage your cache and task results datastore
+
+![portainer](./screens/redis.png)
+
+### RabbitMQ Admin UI
+
+Manage your message broker and queues
+
+![rabbitmq](./screens/rabbitmq.png)
+
+### Flower
+
+Manage your task queues
+
+![flower](./screens/flower.png)
+
+### Kibana
+
+Build dashboards from your logs and long-term persistence
+
+![kibana](./screens/kibana.png)
+
+### Amplify
+
+Monitor your network reverse proxy (NGNINX)
+
+![amplify](./screens/amplify.png)
