@@ -393,6 +393,6 @@ Build dashboards from your logs and long-term persistence
 
 ### Amplify
 
-Monitor your network reverse proxy (NGNINX)
+Monitor your network reverse proxy (NGINX)
 
 ![amplify](./screens/amplify.png)
