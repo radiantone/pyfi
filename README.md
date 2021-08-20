@@ -65,6 +65,7 @@ Some important design goals for this technology are:
 12. **GIT Integration** - All the code used by processors can be pulled from your own git repositories giving you instant integration into existing devops and CM processes. PYFI will let you select which repo and commit version you want a processor to execute code from in your flows.
 
 ## Detailed Architecture
+The center of the PYFI architecture is an enterprise-grade transactional database that maintains the relational models used by the PYFI network.
 
 ### Why a SQL Database?
 Some of you might be asking why a SQL database is the center abstraction point of PYFI, SQL databases have been around for decades! Let me explain.
