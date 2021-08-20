@@ -354,7 +354,7 @@ PYFI uses a custom built, modern User Interface derived from the core design of 
 
 ## Stack Tools
 
-The follow section shows screenshots of the tech stack UI tools. PYFI uses best-of-breed components in its stack and does not trry to reinvent the wheel or tackle all the needs itself (being average in all of them).
+The follow section shows screenshots of the tech stack UI tools. PYFI uses best-of-breed components in its stack and does not try to reinvent the wheel or tackle all the needs itself (being average in all of them).
 
 ### pgAdmin
 
