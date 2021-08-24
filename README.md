@@ -16,6 +16,7 @@ Using the power of reliable, transactional messaging, compute tasks are never lo
 
 * [Overview](#overview)
 * [High Level Architecture](#high-level-architecture)
+  * [At-Scale Design](#at-scale-design)
 * [Tech Stack](#tech-stack)
 * [Design Goals](#design-goals)  
 * [Detailed Architecture](#detailed-architecture)
@@ -36,6 +37,12 @@ Using the power of reliable, transactional messaging, compute tasks are never lo
 The following diagram shows one cross-section of the current *reference implementation* of PYFI. Since everything behind the database can be implemented in a variety of ways, this architecture is not absolute.
 
 ![architecture1](./screens/architecture1.png)
+### At Scale Design
+
+PYFI is designed to operate "at scale", which means there is a one-to-one correspondence between logic compute units (processors) and physical compute units (CPU cores).
+This provides a number of obvious and inherent benefits such as hardware redundancy, high-availability, fault-tolerance, fail-over, performance and ease of maintenance.
+
+![atscale](./screens/scaling.png)
 
 ## Tech Stack
 The following diagram shows the technology stack for the reference implementation. It uses entirely FOSS software that is mature, open and in most cases supported by a commercial entity.
