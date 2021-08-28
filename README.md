@@ -1,6 +1,25 @@
 ![logo](./screens/pyfi.svg)
 
-A distributed data flow and computation system that runs on transactional messaging infrastructure. It is designed to operate as a NVM Networked-Virtual-Machine by implementing distributed logic over hardware CPU/GPU processors and is suitable for all kinds of computational tasks.
+A distributed data flow and computation system that runs on transactional messaging infrastructure. PYFI is designed to operate as a NVM Networked-Virtual-Machine by implementing distributed logic over hardware CPU/GPU processors and is suitable for all kinds of computational tasks.
+
+PYFI, as a whole,  is a "Managed Compute Platform" (MCP) providing the tools and separations between different layers of concern such as:
+* Hardware Compute Resources
+* Compute Availability & Scheduling
+* Distributed Flows
+* Python Processors
+  * Modules & Functions
+* Data Logging and Streaming
+  * Real-time & Historical Metrics
+  
+With the PYFI compute environment different roles & responsibilities exist:
+* Hardware Admins
+* Infrastructure Admins
+* Compute Admins
+* Data Admins
+* Code Repository Owners
+* End Users
+
+PYFI provides the necessary tooling for all these adminstrators and users to work together smoothly across heterogenous compute environments.
 
 *NOTE: This repo will initially contain the core design documentation for PYFI but eventually I will commit the code here. Currently looking for sponsors to support the effort. If curious or interested, please reach out to me at darren@ontrenet.com.*
 ## Introduction
@@ -9,6 +28,17 @@ PYFI differs from other dataflow engines in that it is fully distributed and run
 It establishes a logical directed-acyclic-graph (DAG) overlay network across compute nodes and executes your custom processor scripts (python, node, bash).
 
 Using the power of reliable, transactional messaging, compute tasks are never lost, discarded or undone. Fault tolerance and load-balancing are intrinsic qualities of PYFI and not tacked on as a separate process, which itself would be a failure point.
+
+### Benefits
+
+The PYFI platform provides numerous benefits:
+
+* **A single, purpose-built platform** that addresses end-to-end managed compute from the CPU to the end user. Compared to cobbled together frameworks.
+* **Data flow and data streaming support**
+* **Real-time observable data** across your compute resources
+* **DevOps out-of-the-box** - PYFI integrates directly with GIT allowing your existing code management practices to be used.
+* **Elastic, At-Scale** - PYFI is an elastic infrastructure, meaning that it scales up and down on-the-fly. Code can be moved across hardware locations at any time without data loss.
+* **Extensible** - PYFI is designed to be extended and specialized to your needs. Both the UI and the core platform is open and leverages modern framework design patterns to easily build on top of.
 
 ## Outline
 
