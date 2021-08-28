@@ -25,7 +25,7 @@ PYFI provides the necessary tooling for all these adminstrators and users to wor
 ## Introduction
 PYFI differs from other dataflow engines in that it is fully distributed and runs "at-scale" across heterogeneous infrastructure and computational resources.
 
-It establishes a logical directed-acyclic-graph (DAG) overlay network across compute nodes and executes your custom processor scripts (python, node, bash).
+It establishes a logical directed-graph (DG) overlay network across compute nodes and executes your custom processor scripts (python, node, bash).
 
 Using the power of reliable, transactional messaging, compute tasks are never lost, discarded or undone. Fault tolerance and load-balancing are intrinsic qualities of PYFI and not tacked on as a separate process, which itself would be a failure point.
 
