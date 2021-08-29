@@ -53,6 +53,7 @@ The PYFI platform provides numerous benefits:
   * [Why A SQL Database?](#why-a-sql-database)
   * [Data Model](#data-model)
   * [Security Model](#security-model)
+  * [Logical Processors](#logical-processors)
 * [Command Line Interface](#command-line-interface)  
 * [System Objects](#system-objects)
   * [Nodes](#nodes)
@@ -242,6 +243,57 @@ rights = [  'ALL',
             'READ_SOCKET',
             'READ_USER'
             ]
+```
+
+### Logical Processors
+
+PYFI implements the notion of a *logical processor* that acts as a one-to-one proxy to physical hardware processor cores. PYFI processors have a few interesting traits, only a handful of which are listed below.
+* **Reliable** - Messages (or method calls) on PYFI processors are durable and reliable, surviving faults, reboots or restarts.
+* **Load Balanced** - PYFI processors run natively as a cluster of distributed processes that automatically balanced invocation load.
+* **High Availability** - For the same reasons PYFI processors are reliable and durable, they also become highly-available
+* **Hardware Independent** - PYFI processors are hardware independent and also server independent. They can be relocated from one server to another at any time, even while they are running, without data loss.
+
+Because of the logical nature of PYFI processors, PYFI can offer the user a truly scalable and elastic compute paradigm with powerful visual tools.
+
+#### Introduction to Processors & Sockets
+
+PYFI processors reference python modules that are stored in specific git repositories. When PYFI launches a processor, that git repository is loaded into an isolated virtualenv for that processor.
+Individual functions within that module are referenced by *sockets* that are attached to the processor.
+
+The socket is the logical abstraction of an inbound task invocation, a durable queue and a python function. Client code or other processors can send data to specific processor sockets which are then dispatched to the associated python function and the result is either returned or forwarded to the next socket attached in the data flow (which is to say putting the request on its queue).
+
+#### ***Processors & Sockets Using the GUI***
+
+![socket1](./screens/socket1.png)
+![socket2](./screens/socket2.png)
+#### ***Processors & Sockets Using the CLI***
+
+```bash
+pyfi add queue -n pyfi.queue1 -t direct
+pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample 
+pyfi add socket -n proc1.socket1 -q pyfi.queue1 -pn proc1 -t do_something
+pyfi add socket -n proc1.socket2 -q pyfi.queue1 -pn proc1 -t do_this
+```
+#### ***Processors & Sockets Using the API***
+
+```python
+from pyfi.client.api import Processor, Socket, Queue
+
+# Create a processor
+processor = Processor(name='proc1', module='pyfi.processors.sample', branch='main',
+                      gitrepo='https://github.com/radiantone/pyfi-processors')
+
+# Create a socket for that processor
+do_something = Socket(name='proc1.socket1', processor=processor, queue={
+                'name': 'pyfi.queue1'}, task='do_something')
+
+do_this = Socket(name='proc1.socket2', processor=processor, queue={
+    'name': 'pyfi.queue1'}, task='do_this')
+
+# Send a message to a socket
+do_something("Hello World !")
+
+do_this("Do this!!")
 ```
 ## Command Line Interface
 
