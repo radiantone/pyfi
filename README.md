@@ -31,7 +31,7 @@ Using the power of reliable, transactional messaging, compute tasks are never lo
 
 ### A True Elastic Compute Platform
 
-Pyfi provides a set of interacting compute layers that control the location and execution of managed code assets.
+PYFI provides a set of interacting compute layers that control the location and execution of managed code assets.
 With PYFI, code modules and functions can be loaded at multiple locations and invoked from clients without knowledge of where those functions are or how those functions are called.
 
 Redundant code (processors) loaded into a PYFI network will be able to respond to higher volume of data and requests and thus can scale at will, individually.
@@ -351,7 +351,7 @@ Here are some sample help screens from the CLI.
 $ pyfi
 Usage: pyfi [OPTIONS] COMMAND [ARGS]...
 
-  Pyfi CLI for managing the pyfi network
+  PYFI CLI for managing the pyfi network
 
 Options:
   --debug         Debug switch
@@ -370,7 +370,7 @@ Commands:
   node       Node management operations
   proc       Run or manage processors
   scheduler  Scheduler management commands
-  task       Pyfi task management
+  task       PYFI task management
   update     Update a database object
   web        Web server admin
 ```
