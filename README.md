@@ -54,8 +54,6 @@ The PYFI platform provides numerous benefits:
 
 ## Outline
 
-*Under Construction*
-
 * [Introduction](#introduction)
 * [High Level Architecture](#high-level-architecture)
   * [At-Scale Design](#at-scale-design)
