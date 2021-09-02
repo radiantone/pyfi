@@ -2,7 +2,7 @@
 
 A distributed data flow and computation system that runs on transactional messaging infrastructure. PYFI is designed to operate as a NVM Networked-Virtual-Machine by implementing distributed logic over networked hardware CPU/GPU processors and is suitable for all kinds of computational tasks.
 
-The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized, best-of-breed tooling to support different layers of concern, such as:
+The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized, best-of-breed tooling to support [different layers](#network-layers) of concern, such as:
 * Hardware Compute Resources
 * Compute Availability & Scheduling
 * Distributed Flows
@@ -60,6 +60,7 @@ The PYFI platform provides numerous benefits:
 * [Tech Stack](#tech-stack)
 * [Design Goals](#design-goals)  
 * [Detailed Architecture](#detailed-architecture)
+  * [Network Layers](#network-layers)
   * [Why A SQL Database?](#why-a-sql-database)
   * [Data Model](#data-model)
   * [Security Model](#security-model)
@@ -113,9 +114,18 @@ Some important design goals for this technology are:
 12. **GIT Integration** - All the code used by processors can be pulled from your own git repositories giving you instant integration into existing devops and CM processes. PYFI will let you select which repo and commit version you want a processor to execute code from in your flows.
 
 ## Detailed Architecture
-The center of the PYFI architecture is an enterprise-grade transactional database that maintains the relational models used by the PYFI network.
+PFYI is a scalable, high-performance network architecture that separates concerns across layers. Each layer has best-of-breed components that manage the responsibility of that layer.
+The slides below show the different layers and their responsibilities.
+### Network Layers
+
+![layer1](./screens/layer1.png)
+![layer2](./screens/layer2.png)
+![layer3](./screens/layer3.png)
+![layer4](./screens/layer4.png)
 
 ### Why a SQL Database?
+The center of the PYFI architecture is an enterprise-grade transactional database that maintains the relational models used by the PYFI network.
+
 Some of you might be asking why a SQL database is the center abstraction point of PYFI, SQL databases have been around for decades! Let me explain.
 
 There are some important enterprise qualities we want from the logical database that governs the structure and behavior of a PYFI network.
