@@ -115,7 +115,7 @@ Some important design goals for this technology are:
 
 ## Detailed Architecture
 PFYI is a scalable, high-performance network architecture that separates concerns across layers. Each layer has best-of-breed components that manage the responsibility of that layer.
-The slides below show the different layers and their responsibilities.
+The slides below show the different layers and their responsibilities, starting with the bottom-most layer.
 ### Network Layers
 
 ![layer1](./screens/layer1.png)
