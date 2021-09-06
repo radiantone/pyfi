@@ -325,9 +325,12 @@ do_this("Do this!!")
 ```
 
 #### Curated API for Your Processors + Distributed, Parallel Workflow 
-This example builds on top of the preivous client API built into PYFI and let's you define a simple and flexible API based on your processor functions, so it looks like *plain-old-python*.
+This example builds on top of the previous client API built into PYFI and let's you define a simple and flexible API based on your processor functions, so it looks like *plain-old-python*.
 
 We also introduce parallel workflow constructs such as *pipeline*, *parallel* and *funnel* here but will talk about them in more detail later on.
+
+
+NOTE: The functions *do_something* and *do_this* represent YOUR actual python functions connected to a Processor via git repository.
 ```python
 """ Example"""
 from pyfi.client.api import parallel, pipeline, funnel
