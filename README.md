@@ -315,6 +315,41 @@ do_something("Hello World !")
 
 do_this("Do this!!")
 ```
+
+#### Curated API for Your Processors + Distributed, Parallel Workflow 
+This example builds on top of the preivous client API built into PYFI and let's you define a simple and flexible API based on your processor functions, so it looks like *plain-old-python*.
+
+We also introduce parallel workflow constructs such as *pipeline*, *parallel* and *funnel* here but will talk about them in more detail later on.
+```python
+""" Example"""
+from pyfi.client.api import parallel, pipeline, funnel
+
+# Function API over your processor models
+from pyfi.client.example.api import do_something_p as do_something, do_this_p as do_this
+
+# Durable, reliable, parallel, distributed workflows
+_pipeline = pipeline([
+    do_something("One"),
+    do_something("Two"),
+    parallel([
+        do_something("Four"),
+        do_something("Five"),
+    ]),
+    do_something("Three")])
+
+_parallel = parallel([
+    _pipeline,
+    do_something("Two"),
+    do_something("Three")])
+
+_funnel = funnel([
+    do_something("One"),
+    _parallel,
+    do_this("Three")])
+
+print("FUNNEL: ", _funnel(do_this("Four")).get())
+
+```
 ## Command Line Interface
 
 One of the design goals for PYFI was to allow both Graphical and Command line User Interfaces. A CLI will open up access to various server-side automations, devops pipelines and human sysops that can interact with the PYFI network through a remote console.
