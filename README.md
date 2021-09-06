@@ -330,7 +330,7 @@ This example builds on top of the previous client API built into PYFI and let's 
 We also introduce parallel workflow constructs such as *pipeline*, *parallel* and *funnel* here but will talk about them in more detail later on.
 
 
-NOTE: The functions *do_something* and *do_this* are actual python functions connected to a Processor via git repository. Merely used for examples.
+NOTE: The functions *do_something* and *do_this* are actual (but contrived) python functions connected to a Processor via git repository. Merely used for examples.
 View them [here](https://github.com/radiantone/pyfi-processors/blob/main/pyfi/processors/sample.py).
 ```python
 """ Example"""
