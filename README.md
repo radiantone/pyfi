@@ -61,6 +61,7 @@ The PYFI platform provides numerous benefits:
 * [Design Goals](#design-goals)  
 * [Detailed Architecture](#detailed-architecture)
   * [Network Layers](#network-layers)
+  * [Execution Stack](#execution-stack)
   * [Why A SQL Database?](#why-a-sql-database)
   * [Data Model](#data-model)
   * [Security Model](#security-model)
@@ -118,10 +119,17 @@ PFYI is a scalable, high-performance network architecture that separates concern
 The slides below show the different layers and their responsibilities, starting with the bottom-most layer.
 ### Network Layers
 
+PYFI is a distributed, scalable architecture and as such it is relationship between connected hardware & service layers interacting as a whole.
+
 ![layer1](./screens/layer1.png)
 ![layer2](./screens/layer2.png)
 ![layer3](./screens/layer3.png)
 ![layer4](./screens/layer4.png)
+
+### Execution Stack
+The following diagram shows the traversal of PYFI programs through various stages from the top-level compute API to its destination python function (task).
+
+![stack](./screens/execution.png)
 
 ### Why a SQL Database?
 The center of the PYFI architecture is an enterprise-grade transactional database that maintains the relational models used by the PYFI network.
