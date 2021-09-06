@@ -372,8 +372,14 @@ _funnel = funnel([
     do_this("Three")])
 
 print("FUNNEL: ", _funnel(do_this("Four")).get())
-
 ```
+
+What's interesting about the above code is that the function calls are fully durable and reliable, meaning that they are persistent and if a particular worker fails, the task is retried elsewhere.
+In addition, if the compute resources are not available at the time of execution, the workflow will wait until the PYFI environment finishes executing all the code, which can occur at different times.
+
+Even if the backend were to suffer hardware failures or reboots, the above script would eventually finish and produce its result, all transparently.
+You get all these *qualities of service* for free in PYFI.
+
 ## Command Line Interface
 
 One of the design goals for PYFI was to allow both Graphical and Command line User Interfaces. A CLI will open up access to various server-side automations, devops pipelines and human sysops that can interact with the PYFI network through a remote console.
