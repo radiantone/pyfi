@@ -85,6 +85,8 @@ The following diagram shows one cross-section of the current *reference implemen
 PYFI is designed to operate "at scale", which means there is a one-to-one correspondence between logic compute units (processors) and physical compute units (CPU cores).
 This provides a number of obvious and inherent benefits such as hardware redundancy, high-availability, fault-tolerance, fail-over, performance and ease of maintenance.
 
+Below is a diagram that compares the scaling architecture of Apache NIFI compared to PYFI. Whereas, NIFI uses a course grained, flow-level scaling design, PYFI uses a fine grained, processor-level scale design.
+
 ![atscale](./screens/scaling.png)
 
 ## Tech Stack
