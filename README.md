@@ -380,6 +380,22 @@ In addition, if the compute resources are not available at the time of execution
 Even if the backend were to suffer hardware failures or reboots, the above script would eventually finish and produce its result, all transparently.
 You get all these *qualities of service* for free in PYFI.
 
+#### Shell Based Workflows
+The example below shows how you can use shell pipes to create pipelines.
+
+```bash
+# Create alias' for the run task commands
+alias pyfi.processors.sample.do_something="pyfi task run -s pyfi.processors.sample.do_something"
+alias pyfi.processors.sample.do_this="pyfi task run -s pyfi.processors.sample.do_this"
+
+echo "HI THERE!" | pyfi.processors.sample.do_something 
+
+# Add a 'string' the output of a processor and then flow that into a different processor
+echo "HI THERE!" | pyfi.processors.sample.do_something | echo "$(cat -)string" | pyfi.processors.sample.do_this
+
+# Echo a string as input to two different processors and they run in parallel
+echo "HI THERE!" | tee -a >(pyfi.processors.sample.do_something) tee -a >(pyfi.processors.sample.do_this)
+```
 ## Command Line Interface
 
 One of the design goals for PYFI was to allow both Graphical and Command line User Interfaces. A CLI will open up access to various server-side automations, devops pipelines and human sysops that can interact with the PYFI network through a remote console.
