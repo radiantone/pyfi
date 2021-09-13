@@ -54,12 +54,17 @@ PYFI exposes simple APIs that make writing powerful, distributed workflows fast 
       print("FUNNEL: ", _funnel(do_something("Ten")).get())
 
 .. code-block:: bash
-      :caption: PYFI CLI: Build a small, distributed flow and execute a task, regardless of where the process runs
+      :caption: PYFI CLI: Build a distributed, reliable PYFI network using simple commands, and then execute a task.
 
+      # Build out the infrastructure
       pyfi add queue -n pyfi.queue1 -t direct
       pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample 
-      pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
-      pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
+
+      # Add sockets (not POSIX sockets!) that receive incoming task requests with -c concurrency factors (i.e. # of CPUs occupied)
+      pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something -c 5
+      pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this -c 8
+
+      # Execute a task (can re-run only this after network is built)
       pyfi task run --socket pyfi.processors.sample.do_something --data "['some data']"
 
 .. code-block:: bash

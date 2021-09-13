@@ -251,11 +251,16 @@ In addition, PYFI’s multiple API’s are designed for users (of all kinds) to 
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">PYFI CLI: Build a small, distributed flow and execute a task, regardless of where the process runs</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyfi add queue -n pyfi.queue1 -t direct
+<div class="code-block-caption"><span class="caption-text">PYFI CLI: Build a distributed, reliable PYFI network using simple commands, and then execute a task.</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build out the infrastructure</span>
+pyfi add queue -n pyfi.queue1 -t direct
 pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample
-pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
-pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
+
+<span class="c1"># Add sockets (not POSIX sockets!) that receive incoming task requests with -c concurrency factors (i.e. # of CPUs occupied)</span>
+pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something -c <span class="m">5</span>
+pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this -c <span class="m">8</span>
+
+<span class="c1"># Execute a task (can re-run only this after network is built)</span>
 pyfi task run --socket pyfi.processors.sample.do_something --data <span class="s2">&quot;[&#39;some data&#39;]&quot;</span>
 </pre></div>
 </div>
