@@ -200,29 +200,269 @@
 <h1>CLI<a class="headerlink" href="#cli" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">The ‘pyfi’ command is the single command for building and managing a PYFI network.</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi
+Usage: pyfi <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+Pyfi CLI <span class="k">for</span> managing the pyfi network
+
+Options:
+--debug         Debug switch
+-d, --db TEXT   Database URI
+--backend TEXT  Task queue backend
+--broker TEXT   Message broker URI
+-i, --ini TEXT  PYFI .ini configuration file
+-c, --config    Configure pyfi
+--help          Show this message and exit.
+
+Commands:
+add        Add an object to the database
+agent      Run pyfi agent
+api        API server admin
+db         Database operations
+delete     Delete an object from the database
+listen     Listen to a processor output
+ls         List database objects and their relations
+node       Node management operations
+proc       Run or manage processors
+scheduler  Scheduler management commands
+task       Pyfi task management
+update     Update a database object
+web        Web server admin
+whoami     Database login user
+worker     Run pyfi worker
+</pre></div>
+</div>
+</div>
 <div class="section" id="database">
 <h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">PYFI database sub-commands</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi db
+Usage: pyfi db <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+Database operations
+
+Options:
+--help  Show this message and exit.
+
+Commands:
+drop     Drop all database tables
+init     Initialize database tables
+json     Dump the database to JSON
+migrate  Perform database migration/upgrade
+rebuild  Drop and rebuild database tables
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="objects">
 <h2>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h2>
+<p>There are numerous objects within a PYFI network. Some are infrastructure related, others are service related. Using the PYFI CLI you create, update and manage these objects in the database, which acts as a <strong>single source of truth</strong> for the entire PYFI network.
+All the deployed PYFI services (e.g. agents) <em>react</em> to changes in the PYFI database. So you could say that PYFI is <em>reactive</em> on a distributed, network-scale.</p>
+<p>Some of the system objects and CLI commands are shown below.</p>
 </div>
 <div class="section" id="queues">
 <h2>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Add a queue to the database</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add queue --help
+Usage: pyfi add queue <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Add queue object to the database
+
+Options:
+-n, --name TEXT                 <span class="o">[</span>required<span class="o">]</span>
+-t, --type <span class="o">[</span>topic<span class="p">|</span>direct<span class="p">|</span>fanout<span class="o">]</span>
+                                 <span class="o">[</span>default: direct<span class="p">;</span> required<span class="o">]</span>
+--help                          Show this message and exit.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="processors">
 <h2>Processors<a class="headerlink" href="#processors" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Add a processor to the database</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add processor --help
+Usage: pyfi add processor <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Add processor to the database
+
+Options:
+-n, --name TEXT               Name of this processor  <span class="o">[</span>required<span class="o">]</span>
+-m, --module TEXT             Python module <span class="o">(</span>e.g. some.module.path
+                              <span class="o">[</span>required<span class="o">]</span>
+
+-h, --hostname TEXT           Target server hostname
+-w, --workers INTEGER         Number of worker tasks
+-r, --retries INTEGER         Number of retries to invoke this processor
+-g, --gitrepo TEXT            Git repo URI  <span class="o">[</span>required<span class="o">]</span>
+-c, --commit TEXT             Git commit id <span class="k">for</span> processor code
+-rs, --requested_status TEXT  The requested status <span class="k">for</span> this processor
+-b, --beat                    Enable the beat scheduler
+-br, --branch TEXT            Git branch to be used <span class="k">for</span> checkouts
+--help                        Show this message and exit.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Specific processor subcommands</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi proc
+Usage: pyfi proc <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+Run or manage processors
+
+Options:
+--id TEXT  ID of processor
+--help     Show this message and exit.
+
+Commands:
+pause    Pause a processor
+remove   Remove a processor
+restart  Start a processor
+resume   Pause a processor
+start    Start a processor
+stop     Stop a processor
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="calls">
 <h2>Calls<a class="headerlink" href="#calls" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Call subcommands</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi ls calls --help
+Usage: pyfi ls calls <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+List queues
+
+Options:
+-p, --page INTEGER
+-r, --rows INTEGER
+-a, --ascend
+--help              Show this message and exit.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">pyfi ls calls</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi ls calls
++------+-----+-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
+<span class="p">|</span> Page <span class="p">|</span> Row <span class="p">|</span>                 Name                <span class="p">|</span>                  ID                  <span class="p">|</span>  Owner   <span class="p">|</span>        Last Updated        <span class="p">|</span>                Socket               <span class="p">|</span>          Started           <span class="p">|</span>          Finished          <span class="p">|</span>  State   <span class="p">|</span>
++------+-----+-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">1</span>  <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> e3f73300-f3fd-4230-ba11-258d4f5a17f4 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.933346 <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.903573 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.932491 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">2</span>  <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> e3bf09c5-ae45-4772-b301-c394acae3c4e <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.885993 <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.847282 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.885440 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">3</span>  <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> a58de16a-1b92-4acb-81c1-92e81cb6ea56 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:49.944219 <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:49.917225 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:49.943415 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">4</span>  <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> 58df162a-ac2e-40b7-9e27-635c61a4d9a7 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:49.868975 <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:49.820097 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:49.868109 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">5</span>  <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> 60d8b91d-1b8b-433c-a289-5704856d37d1 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:19.907705 <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:19.880742 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:19.906931 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">6</span>  <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> 66c78849-9052-48d0-ae62-59942d544096 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:19.861880 <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:19.824456 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:29:19.861330 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">7</span>  <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> e5189a71-9805-492e-a8d7-e5eb2b8d68d3 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:49.873301 <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:49.842724 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:49.872176 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">8</span>  <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> 35fd3635-743a-4015-acfe-c5a8f62ef65d <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:49.812921 <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:49.789503 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:49.812406 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">9</span>  <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> 4136ebe2-ee96-4b74-ba0e-33d8c5974252 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:19.830508 <span class="p">|</span>    pyfi.processors.sample.do_this   <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:19.805839 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:19.829667 <span class="p">|</span> finished <span class="p">|</span>
+<span class="p">|</span>  <span class="m">1</span>   <span class="p">|</span>  <span class="m">10</span> <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> 707f18c5-5708-4c70-81fb-ca0afb30e28b <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:19.789542 <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:19.764792 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:28:19.788999 <span class="p">|</span> finished <span class="p">|</span>
++------+-----+-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
+Page <span class="m">1</span> of <span class="m">383</span> of <span class="m">3830</span> total records
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">pyfi ls call –help</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi ls call --help
+Usage: pyfi ls call <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+List details about a call record
+
+Options:
+--id TEXT        ID of call
+-n, --name TEXT  Name of call
+-r, --result     Include result of call
+-t, --tree       Show forward call tree
+-g, --graph      Show <span class="nb">complete</span> call graph
+-f, --flow       Show all calls <span class="k">in</span> a workflow
+--help           Show this message and exit.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">pyfi ls call –id e3bf09c5-ae45-4772-b301-c394acae3c4e</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e
++-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
+<span class="p">|</span>                 Name                <span class="p">|</span>                  ID                  <span class="p">|</span>  Owner   <span class="p">|</span>        Last Updated        <span class="p">|</span>                Socket               <span class="p">|</span>          Started           <span class="p">|</span>          Finished          <span class="p">|</span>  State   <span class="p">|</span>
++-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
+<span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> e3bf09c5-ae45-4772-b301-c394acae3c4e <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.885993 <span class="p">|</span> pyfi.processors.sample.do_something <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.847282 <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.885440 <span class="p">|</span> finished <span class="p">|</span>
++-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
+Provenance
++--------------------------------------+-------------+-------------+
+<span class="p">|</span>                 Task                 <span class="p">|</span> Task Parent <span class="p">|</span> Flow Parent <span class="p">|</span>
++--------------------------------------+-------------+-------------+
+<span class="p">|</span> a13ba1e7-78f9-4644-9c29-696dfd89e9e4 <span class="p">|</span>     None    <span class="p">|</span>     None    <span class="p">|</span>
++--------------------------------------+-------------+-------------+
+Events
++----------+--------------------------------------+----------+----------------------------+-----------------------------------------------------+
+<span class="p">|</span>   Name   <span class="p">|</span>                  ID                  <span class="p">|</span>  Owner   <span class="p">|</span>        Last Updated        <span class="p">|</span>                         Note                        <span class="p">|</span>
++----------+--------------------------------------+----------+----------------------------+-----------------------------------------------------+
+<span class="p">|</span> received <span class="p">|</span> 8e8845d5-cd32-40d9-93c7-e95f7500926c <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.844512 <span class="p">|</span>  Received task pyfi.processors.sample.do_something  <span class="p">|</span>
+<span class="p">|</span>  prerun  <span class="p">|</span> a2507cd1-1d72-4ad1-be74-375aac29f1c4 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.874789 <span class="p">|</span> Prerun <span class="k">for</span> task pyfi.processors.sample.do_something <span class="p">|</span>
+<span class="p">|</span> postrun  <span class="p">|</span> f8b5ff03-e0e3-467d-9257-a682f0865581 <span class="p">|</span> postgres <span class="p">|</span> <span class="m">2021</span>-09-13 <span class="m">19</span>:30:19.886504 <span class="p">|</span>                  Postrun <span class="k">for</span> task                   <span class="p">|</span>
++----------+--------------------------------------+----------+----------------------------+-----------------------------------------------------+
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">pyfi ls call –id e3bf09c5-ae45-4772-b301-c394acae3c4e –tree</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e --tree
+pyfi.processors.sample.do_something
+      └────────────────────┐
+               pyfi.processors.sample.do_this
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="listening">
 <h2>Listening<a class="headerlink" href="#listening" title="Permalink to this headline">¶</a></h2>
+<p>The listen command allows you to listen to the pubsub channels associated with queues and processors. A kind of <em>network sniffer</em> that displays in real-time the various message traffic, compute results, lifecycle events etc.
+You can provide your own custom class to receive the results which is designed to provide a simple and loosely coupled mechanism for system integrations.</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Messages will be displayed as they are generated within the network.</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi listen --help
+Usage: pyfi listen <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Listen to a processor output
+
+Options:
+-n, --name TEXT     Name of processor  <span class="o">[</span>required<span class="o">]</span>
+-c, --channel TEXT  Listen channel <span class="o">(</span>e.g. task, log, etc<span class="o">)</span>  <span class="o">[</span>required<span class="o">]</span>
+-a, --adaptor TEXT  Adaptor class <span class="k">function</span> <span class="o">(</span>e.g. my.module.class.function<span class="o">)</span>
+--help              Show this message and exit.
+$ pyfi listen --name pyfi.queue1.proc1 --channel task
+Listening to pyfi.queue1.proc1
+<span class="o">{</span><span class="s1">&#39;type&#39;</span>: <span class="s1">&#39;psubscribe&#39;</span>, <span class="s1">&#39;pattern&#39;</span>: None, <span class="s1">&#39;channel&#39;</span>: b<span class="s1">&#39;pyfi.queue1.proc1.task&#39;</span>, <span class="s1">&#39;data&#39;</span>: <span class="m">1</span><span class="o">}</span>
+<span class="o">{</span><span class="s1">&#39;type&#39;</span>: <span class="s1">&#39;pmessage&#39;</span>, <span class="s1">&#39;pattern&#39;</span>: b<span class="s1">&#39;pyfi.queue1.proc1.task&#39;</span>, <span class="s1">&#39;channel&#39;</span>: b<span class="s1">&#39;pyfi.queue1.proc1.task&#39;</span>, <span class="s1">&#39;data&#39;</span>: b<span class="s1">&#39;{&quot;channel&quot;: &quot;task&quot;, &quot;state&quot;: &quot;received&quot;, &quot;date&quot;: &quot;2021-09-13 19:37:20.094443&quot;, &quot;room&quot;: &quot;pyfi.queue1.proc1&quot;}&#39;</span><span class="o">}</span>
+<span class="o">{</span><span class="s1">&#39;type&#39;</span>: <span class="s1">&#39;pmessage&#39;</span>, <span class="s1">&#39;pattern&#39;</span>: b<span class="s1">&#39;pyfi.queue1.proc1.task&#39;</span>, <span class="s1">&#39;channel&#39;</span>: b<span class="s1">&#39;pyfi.queue1.proc1.task&#39;</span>, <span class="s1">&#39;data&#39;</span>: b<span class="s1">&#39;{&quot;channel&quot;: &quot;task&quot;, &quot;state&quot;: &quot;running&quot;, &quot;date&quot;: &quot;2021-09-13 19:37:20.108668&quot;, &quot;room&quot;: &quot;pyfi.queue1.proc1&quot;}&#39;</span><span class="o">}</span>
+<span class="o">{</span><span class="s1">&#39;type&#39;</span>: <span class="s1">&#39;pmessage&#39;</span>, <span class="s1">&#39;pattern&#39;</span>: b<span class="s1">&#39;pyfi.queue1.proc1.task&#39;</span>, <span class="s1">&#39;channel&#39;</span>: b<span class="s1">&#39;pyfi.queue1.proc1.task&#39;</span>, <span class="s1">&#39;data&#39;</span>: b<span class="s1">&#39;{&quot;module&quot;: &quot;pyfi.processors.sample&quot;, &quot;date&quot;: &quot;2021-09-13 19:37:20.133327&quot;, &quot;resultkey&quot;: &quot;celery-task-meta-b3feb181-484d-4b98-aba8-daabd07ee3d1&quot;, &quot;message&quot;: &quot;{\\&quot;module\\&quot;: \\&quot;pyfi.processors.sample\\&quot;, \\&quot;date\\&quot;: \\&quot;2021-09-13 19:37:20.133327\\&quot;, \\&quot;resultkey\\&quot;: \\&quot;celery-task-meta-b3feb181-484d-4b98-aba8-daabd07ee3d1\\&quot;, \\&quot;message\\&quot;: \\&quot;\\\\\\&quot;\\\\\\\\\\\\\\&quot;Message:Hello World!\\\\\\\\\\\\\\&quot;\\\\\\&quot;\\&quot;, \\&quot;channel\\&quot;: \\&quot;task\\&quot;, \\&quot;room\\&quot;: \\&quot;pyfi.queue1.proc1\\&quot;, \\&quot;task\\&quot;: \\&quot;do_something\\&quot;}&quot;, &quot;channel&quot;: &quot;task&quot;, &quot;room&quot;: &quot;pyfi.queue1.proc1&quot;, &quot;task&quot;: &quot;do_something&quot;, &quot;state&quot;: &quot;postrun&quot;}&#39;</span><span class="o">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="running-an-agent">
 <h2>Running an Agent<a class="headerlink" href="#running-an-agent" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">PYFI database sub-commands</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="roles-users">
 <h2>Roles &amp; Users<a class="headerlink" href="#roles-users" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">PYFI database sub-commands</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
