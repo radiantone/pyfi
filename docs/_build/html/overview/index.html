@@ -217,7 +217,7 @@
 - Real-time &amp; Historical Metrics</p></li>
 </ul>
 <p>PYFI is designed as a single, extensible platform for building reliable &amp; persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus’ on writing simple, obvious workflows without having to know <em>how everything works</em>.
-In addition, PYFI’s multiple API’s are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows on top. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the bigger picture.</p>
+In addition, PYFI’s multiple API’s are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the bigger picture.</p>
 <p><em>Many problems and usability concerns in this domain can only be addressed by a single, purpose-built platform from the ground up.</em></p>
 <div class="section" id="simple-parallel-workflows">
 <h2>Simple, Parallel Workflows<a class="headerlink" href="#simple-parallel-workflows" title="Permalink to this headline">¶</a></h2>
@@ -323,6 +323,10 @@ Various qualities of service are offered by each layer, most of which are implie
 </div>
 <div class="section" id="micro-scheduling">
 <h2>Micro-Scheduling<a class="headerlink" href="#micro-scheduling" title="Permalink to this headline">¶</a></h2>
+<p>PYFI uses a scheduling design that will allow tasks to fully utilize the available CPUs in the PYFI network, if processors are created in the PYFI database. PYFI will never consume more resources than what is requested in its database.
+Although traditional batch scheduling design allows for blocks of compute resources to be dedicated to one task or flow, it comes at the expense of resource utilization and wait time for other requests. Micro-scheduling seeks to remedy this situation and provide better compute efficiency which means higher task throughput and more satisfied users.</p>
+<img alt="../_images/scheduler1.png" src="../_images/scheduler1.png" />
+<img alt="../_images/scheduler2.png" src="../_images/scheduler2.png" />
 </div>
 <div class="section" id="a-true-elastic-compute-platform">
 <h2>A True Elastic Compute Platform<a class="headerlink" href="#a-true-elastic-compute-platform" title="Permalink to this headline">¶</a></h2>

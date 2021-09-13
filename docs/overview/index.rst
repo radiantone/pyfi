@@ -6,7 +6,7 @@ Overview
 
 PYFI is a distributed data flow and computation system that runs on transactional messaging infrastructure. It implements the concept of a NVM Networked-Virtual-Machine by distributing logic over networked hardware CPU/GPU processors.
 
-The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized, best-of-breed tooling to support different layers of concern, such as:
+The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized tooling to support different layers of concern, such as:
 
 - Hardware Compute Resources
 - Compute Availability & Scheduling
@@ -16,10 +16,10 @@ The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform
 - Data Logging and Streaming
   - Real-time & Historical Metrics
   
-PYFI is designed as a single, extensible platform for building reliable & persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus' on writing simple, obvious workflows without having to know *how everything works*.
+PYFI is designed as a single, extensible platform for building reliable & persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus' on simplicity and ease-of-user without having to know *how everything works*.
 In addition, PYFI's multiple API's are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the bigger picture.
 
-*Many problems and usability concerns in this domain can only be addressed by a single, purpose-built platform from the ground up.*
+*Many problems and usability concerns in this domain can only be addressed by a singular, purpose-built platform from the ground up.*
 
 Simple, Parallel Workflows
 --------------------------
@@ -136,6 +136,12 @@ Various qualities of service are offered by each layer, most of which are implie
 
 Micro-Scheduling
 ----------------
+
+PYFI uses a scheduling design that will allow tasks to fully utilize the available CPUs in the PYFI network, if processors are created in the PYFI database. PYFI will never consume more resources than what is requested in its database.
+Although traditional batch scheduling design allows for blocks of compute resources to be dedicated to one task or flow, it comes at the expense of resource utilization and wait time for other requests. Micro-scheduling seeks to remedy this situation and provide better compute efficiency which means higher task throughput and more satisfied users.
+
+.. image:: images/scheduler1.png
+.. image:: images/scheduler2.png
 
 A True Elastic Compute Platform
 -------------------------------
