@@ -206,7 +206,7 @@
 <div class="toctree-wrapper compound">
 </div>
 <p>PYFI is a distributed data flow and computation system that runs on transactional messaging infrastructure. It implements the concept of a NVM Networked-Virtual-Machine by distributing logic over networked hardware CPU/GPU processors.</p>
-<p>The entire PYFI stack, as a whole, provides a complete “Managed Compute Platform” (MCP) with specialized, best-of-breed tooling to support different layers of concern, such as:</p>
+<p>The entire PYFI stack, as a whole, provides a complete “Managed Compute Platform” (MCP) with specialized tooling to support different layers of concern, such as:</p>
 <ul class="simple">
 <li><p>Hardware Compute Resources</p></li>
 <li><p>Compute Availability &amp; Scheduling</p></li>
@@ -216,9 +216,9 @@
 <li><p>Data Logging and Streaming
 - Real-time &amp; Historical Metrics</p></li>
 </ul>
-<p>PYFI is designed as a single, extensible platform for building reliable &amp; persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus’ on writing simple, obvious workflows without having to know <em>how everything works</em>.
+<p>PYFI is designed as a single, extensible platform for building reliable &amp; persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus’ on simplicity and ease-of-user without having to know <em>how everything works</em>.
 In addition, PYFI’s multiple API’s are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the bigger picture.</p>
-<p><em>Many problems and usability concerns in this domain can only be addressed by a single, purpose-built platform from the ground up.</em></p>
+<p><em>Many problems and usability concerns in this domain can only be addressed by a singular, purpose-built platform from the ground up.</em></p>
 <div class="section" id="simple-parallel-workflows">
 <h2>Simple, Parallel Workflows<a class="headerlink" href="#simple-parallel-workflows" title="Permalink to this headline">¶</a></h2>
 <p>PYFI exposes simple APIs that make writing powerful, distributed workflows fast and easy. A few examples below.</p>
@@ -274,6 +274,17 @@ pyfi task run --socket pyfi.processors.sample.do_something --data <span class="s
 
 <span class="c1"># Echo a string as input to two different processors and they run in parallel</span>
 <span class="nb">echo</span> <span class="s2">&quot;HI THERE!&quot;</span> <span class="p">|</span> tee -a &gt;<span class="o">(</span>pyfi.processors.sample.do_something<span class="o">)</span> tee -a &gt;<span class="o">(</span>pyfi.processors.sample.do_this<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Easily list out the call graph for any task in your workflow to see where the parallelism occurred</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi ls call --id 033cf3d3-a0fa-492d-af0a-f51cf5f58d49 -g
+pyfi.processors.sample.do_something
+            └─────────────────────────────────────────────┐
+                                       pyfi.processors.sample.do_something
+                                 ┌──────────────────────┴───────────────────┬───────────────────────────────────────┐
+                  pyfi.processors.sample.do_something        pyfi.processors.sample.do_something     pyfi.processors.sample.do_something
 </pre></div>
 </div>
 </div>

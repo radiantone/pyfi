@@ -78,6 +78,15 @@ PYFI exposes simple APIs that make writing powerful, distributed workflows fast 
       # Echo a string as input to two different processors and they run in parallel
       echo "HI THERE!" | tee -a >(pyfi.processors.sample.do_something) tee -a >(pyfi.processors.sample.do_this)
 
+.. code-block:: bash
+      :caption: Easily list out the call graph for any task in your workflow to see where the parallelism occurred
+
+      $ pyfi ls call --id 033cf3d3-a0fa-492d-af0a-f51cf5f58d49 -g
+      pyfi.processors.sample.do_something                                                                                                          
+                  └─────────────────────────────────────────────┐                                                                                     
+                                             pyfi.processors.sample.do_something                                                                    
+                                       ┌──────────────────────┴───────────────────┬───────────────────────────────────────┐                         
+                        pyfi.processors.sample.do_something        pyfi.processors.sample.do_something     pyfi.processors.sample.do_something  
 
 Persistent, Reliable Tasks
 --------------------------
