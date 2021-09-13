@@ -3,7 +3,7 @@ CLI
 ================================
 .. toctree::
    :maxdepth: 2
-
+ 
 .. code-block:: bash
       :caption: The 'pyfi' command is the single command for building and managing a PYFI network.
 
