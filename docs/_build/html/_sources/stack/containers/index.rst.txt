@@ -15,4 +15,3 @@ Containers
    postgres/index
    rabbitmq/index
    redis/index
-

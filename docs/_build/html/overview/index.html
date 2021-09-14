@@ -216,8 +216,8 @@
 <li><p>Data Logging and Streaming
 - Real-time &amp; Historical Metrics</p></li>
 </ul>
-<p>PYFI is designed as a single, extensible platform for building reliable &amp; persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus’ on simplicity and ease-of-user without having to know <em>how everything works</em>.
-In addition, PYFI’s multiple API’s are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the bigger picture.</p>
+<p>PYFI is designed as a single, extensible platform for building reliable &amp; persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus’ on simplicity and ease-of-use without having to know <em>how everything works</em>.
+In addition, PYFI’s multiple API’s are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the big picture.</p>
 <p><em>Many problems and usability concerns in this domain can only be addressed by a singular, purpose-built platform from the ground up.</em></p>
 <div class="section" id="simple-parallel-workflows">
 <h2>Simple, Parallel Workflows<a class="headerlink" href="#simple-parallel-workflows" title="Permalink to this headline">¶</a></h2>
@@ -227,26 +227,33 @@ In addition, PYFI’s multiple API’s are designed for users (of all kinds) to 
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfi.client.api</span> <span class="kn">import</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">funnel</span>
 <span class="kn">from</span> <span class="nn">pyfi.client.example.api</span> <span class="kn">import</span> <span class="n">do_something_p</span> <span class="k">as</span> <span class="n">do_something</span>
 
+<span class="c1"># Create a pipeline that executes tasks sequentially, passing result to next task</span>
 <span class="n">_pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">([</span>
    <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;One&quot;</span><span class="p">),</span>
    <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Two&quot;</span><span class="p">),</span>
+   <span class="c1"># Create a parallel structure that executes tasks in parallel and returns the</span>
+   <span class="c1"># result list</span>
    <span class="n">parallel</span><span class="p">([</span>
       <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Four&quot;</span><span class="p">),</span>
       <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Five&quot;</span><span class="p">),</span>
    <span class="p">]),</span>
    <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Three&quot;</span><span class="p">)])</span>
 
+<span class="c1"># Create another parallel structure using the above pipeline as one of its tasks</span>
 <span class="n">_parallel</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">([</span>
    <span class="n">_pipeline</span><span class="p">,</span>
    <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Six&quot;</span><span class="p">),</span>
    <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Seven&quot;</span><span class="p">)])</span>
 
+<span class="c1"># Create a funnel structure that executes all its tasks passing the result to the</span>
+<span class="c1"># single, final task</span>
 <span class="n">_funnel</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">([</span>
    <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Eight&quot;</span><span class="p">),</span>
    <span class="n">_parallel</span><span class="p">,</span>
    <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Nine&quot;</span><span class="p">)])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FUNNEL: &quot;</span><span class="p">,</span> <span class="n">_funnel</span><span class="p">(</span><span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Ten&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+<span class="c1"># Gather the result from the _funnel and send it to do_something(&quot;Four&quot;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FUNNEL: &quot;</span><span class="p">,</span> <span class="n">_funnel</span><span class="p">(</span><span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Four&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>

@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Install</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#bringing-up-the-stack">Bringing up the Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-pyfi-cli">Configuring PYFI CLI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initialize-the-database">Initialize the Database</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-pyfi-cli">The PYFI CLI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-your-first-flow">Creating Your First Flow</a></li>
@@ -199,18 +200,135 @@
 </div>
 <div class="section" id="bringing-up-the-stack">
 <h2>Bringing up the Stack<a class="headerlink" href="#bringing-up-the-stack" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose up
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuring-pyfi-cli">
+<h2>Configuring PYFI CLI<a class="headerlink" href="#configuring-pyfi-cli" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi --config
+Database connection URI <span class="o">[</span>postgresql://postgres:pyfi101@phoenix:5432/pyfi<span class="o">]</span>:
+Result backend URI <span class="o">[</span>redis://localhost<span class="o">]</span>:
+Message broker URI <span class="o">[</span>pyamqp://localhost<span class="o">]</span>:
+Configuration file created at /home/user/pyfi.ini
+</pre></div>
+</div>
 </div>
 <div class="section" id="initialize-the-database">
 <h2>Initialize the Database<a class="headerlink" href="#initialize-the-database" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi db init
+Enabling security on table action
+Enabling security on table event
+Enabling security on table flow
+Enabling security on table <span class="nb">jobs</span>
+Enabling security on table log
+Enabling security on table privilege
+Enabling security on table queue
+Enabling security on table queuelog
+Enabling security on table role
+Enabling security on table scheduler
+Enabling security on table settings
+Enabling security on table task
+Enabling security on table user
+Enabling security on table node
+Enabling security on table processor
+Enabling security on table role_privileges
+Enabling security on table user_privileges
+Enabling security on table user_roles
+Enabling security on table agent
+Enabling security on table plug
+Enabling security on table socket
+Enabling security on table call
+Enabling security on table plugs_queues
+Enabling security on table plugs_source_sockets
+Enabling security on table plugs_target_sockets
+Enabling security on table sockets_queues
+Enabling security on table worker
+Enabling security on table calls_events
+Database create all schemas <span class="k">done</span>.
+</pre></div>
+</div>
 </div>
 <div class="section" id="the-pyfi-cli">
 <h2>The PYFI CLI<a class="headerlink" href="#the-pyfi-cli" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi
+Usage: pyfi <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+Pyfi CLI <span class="k">for</span> managing the pyfi network
+
+Options:
+--debug         Debug switch
+-d, --db TEXT   Database URI
+--backend TEXT  Task queue backend
+--broker TEXT   Message broker URI
+-i, --ini TEXT  PYFI .ini configuration file
+-c, --config    Configure pyfi
+--help          Show this message and exit.
+
+Commands:
+add        Add an object to the database
+agent      Run pyfi agent
+api        API server admin
+db         Database operations
+delete     Delete an object from the database
+listen     Listen to a processor output
+ls         List database objects and their relations
+node       Node management operations
+proc       Run or manage processors
+scheduler  Scheduler management commands
+task       Pyfi task management
+update     Update a database object
+web        Web server admin
+whoami     Database login user
+worker     Run pyfi worker
+</pre></div>
+</div>
 </div>
 <div class="section" id="creating-your-first-flow">
 <h2>Creating Your First Flow<a class="headerlink" href="#creating-your-first-flow" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add queue -n pyfi.queue1 -t direct
+$ pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -h localhost
+$ pyfi add socket -n proc1.socket1 -q pyfi.queue1 -pn proc1 -t do_something
+$ pyfi add socket -n proc1.socket2 -q pyfi.queue1 -pn proc1 -t do_this
+$ pyfi task run --socket proc1.socket2 --data <span class="s2">&quot;[&#39;some data&#39;]&quot;</span>
+Do this: <span class="o">[</span><span class="s1">&#39;some data&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="running-a-parallel-workflow">
 <h2>Running a Parallel Workflow<a class="headerlink" href="#running-a-parallel-workflow" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from pyfi.client.api import parallel, pipeline, funnel
+from pyfi.client.example.api import do_something_p as do_something
+
+<span class="c1"># Create a pipeline that executes tasks sequentially, passing result to next task</span>
+<span class="nv">_pipeline</span> <span class="o">=</span> pipeline<span class="o">([</span>
+   do_something<span class="o">(</span><span class="s2">&quot;One&quot;</span><span class="o">)</span>,
+   do_something<span class="o">(</span><span class="s2">&quot;Two&quot;</span><span class="o">)</span>,
+   <span class="c1"># Create a parallel structure that executes tasks in parallel and returns the</span>
+   <span class="c1"># result list</span>
+   parallel<span class="o">([</span>
+      do_something<span class="o">(</span><span class="s2">&quot;Four&quot;</span><span class="o">)</span>,
+      do_something<span class="o">(</span><span class="s2">&quot;Five&quot;</span><span class="o">)</span>,
+   <span class="o">])</span>,
+   do_something<span class="o">(</span><span class="s2">&quot;Three&quot;</span><span class="o">)])</span>
+
+<span class="c1"># Create another parallel structure using the above pipeline as one of its tasks</span>
+<span class="nv">_parallel</span> <span class="o">=</span> parallel<span class="o">([</span>
+   _pipeline,
+   do_something<span class="o">(</span><span class="s2">&quot;Six&quot;</span><span class="o">)</span>,
+   do_something<span class="o">(</span><span class="s2">&quot;Seven&quot;</span><span class="o">)])</span>
+
+<span class="c1"># Create a funnel structure that executes all its tasks passing the result to the</span>
+<span class="c1"># single, final task</span>
+<span class="nv">_funnel</span> <span class="o">=</span> funnel<span class="o">([</span>
+   do_something<span class="o">(</span><span class="s2">&quot;Eight&quot;</span><span class="o">)</span>,
+   _parallel,
+   do_something<span class="o">(</span><span class="s2">&quot;Nine&quot;</span><span class="o">)])</span>
+
+<span class="c1"># Gather the result from the _funnel and send it to do_something(&quot;Four&quot;)</span>
+print<span class="o">(</span><span class="s2">&quot;FUNNEL: &quot;</span>, _funnel<span class="o">(</span>do_something<span class="o">(</span><span class="s2">&quot;Four&quot;</span><span class="o">))</span>.get<span class="o">())</span>
+</pre></div>
+</div>
 </div>
 </div>
 

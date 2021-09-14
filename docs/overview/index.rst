@@ -16,7 +16,7 @@ The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform
   - Real-time & Historical Metrics
   
 PYFI is designed as a single, extensible platform for building reliable & persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus' on simplicity and ease-of-use without having to know *how everything works*.
-In addition, PYFI's multiple API's are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the bigger picture.
+In addition, PYFI's multiple API's are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the big picture.
 
 *Many problems and usability concerns in this domain can only be addressed by a singular, purpose-built platform from the ground up.*
 
@@ -31,26 +31,33 @@ PYFI exposes simple APIs that make writing powerful, distributed workflows fast 
       from pyfi.client.api import parallel, pipeline, funnel
       from pyfi.client.example.api import do_something_p as do_something
 
+      # Create a pipeline that executes tasks sequentially, passing result to next task
       _pipeline = pipeline([
          do_something("One"),
          do_something("Two"),
+         # Create a parallel structure that executes tasks in parallel and returns the 
+         # result list
          parallel([
             do_something("Four"),
             do_something("Five"),
          ]),
          do_something("Three")])
 
+      # Create another parallel structure using the above pipeline as one of its tasks
       _parallel = parallel([
          _pipeline,
          do_something("Six"),
          do_something("Seven")])
 
+      # Create a funnel structure that executes all its tasks passing the result to the
+      # single, final task
       _funnel = funnel([
          do_something("Eight"),
          _parallel,
          do_something("Nine")])
 
-      print("FUNNEL: ", _funnel(do_something("Ten")).get())
+      # Gather the result from the _funnel and send it to do_something("Four")
+      print("FUNNEL: ", _funnel(do_something("Four")).get())
 
 .. code-block:: bash
       :caption: PYFI CLI: Build a distributed, reliable PYFI network using simple commands, and then execute a task.
