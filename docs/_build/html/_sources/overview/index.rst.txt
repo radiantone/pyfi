@@ -3,7 +3,6 @@ Overview
 .. toctree::
    :maxdepth: 2
 
-
 PYFI is a distributed data flow and computation system that runs on transactional messaging infrastructure. It implements the concept of a NVM Networked-Virtual-Machine by distributing logic over networked hardware CPU/GPU processors.
 
 The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized tooling to support different layers of concern, such as:
