@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'PYFI'
-copyright = '2021, Observable Data Inc'
+copyright = '2021, Darren Govoni'
 author = 'Darren Govoni'
 
 # The full version, including alpha/beta/rc tags
