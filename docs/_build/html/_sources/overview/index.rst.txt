@@ -15,10 +15,8 @@ The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform
 - Data Logging and Streaming
   - Real-time & Historical Metrics
   
-PYFI is designed as a single, extensible platform for building reliable & persistent computational workflows. It relieves developers from having to know where and when tasks get executed or forced to configure complex client-side services, and instead focus' on simplicity and ease-of-use without having to know *how everything works*.
+PYFI is designed as a single, extensible platform for building reliable & persistent computational workflows. It relieves developers from having to know where and when tasks get executed or having to configure client side services.
 In addition, PYFI's multiple API's are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the big picture.
-
-*Many problems and usability concerns in this domain can only be addressed by a singular, purpose-built platform from the ground up.*
 
 Simple, Parallel Workflows
 --------------------------
