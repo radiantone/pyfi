@@ -106,6 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#the-pyfi-cli">The PYFI CLI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-your-first-flow">Creating Your First Flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-a-parallel-workflow">Running a Parallel Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-socket-functions">Defining Socket Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -288,47 +289,64 @@ worker     Run pyfi worker
 <h2>Creating Your First Flow<a class="headerlink" href="#creating-your-first-flow" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add queue -n pyfi.queue1 -t direct
 $ pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -h localhost
-$ pyfi add socket -n proc1.socket1 -q pyfi.queue1 -pn proc1 -t do_something
-$ pyfi add socket -n proc1.socket2 -q pyfi.queue1 -pn proc1 -t do_this
-$ pyfi task run --socket proc1.socket2 --data <span class="s2">&quot;[&#39;some data&#39;]&quot;</span>
+$ pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
+$ pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
+$ pyfi task run --socket pyfi.processors.sample.do_this --data <span class="s2">&quot;[&#39;some data&#39;]&quot;</span>
 Do this: <span class="o">[</span><span class="s1">&#39;some data&#39;</span><span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="running-a-parallel-workflow">
 <h2>Running a Parallel Workflow<a class="headerlink" href="#running-a-parallel-workflow" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from pyfi.client.api import parallel, pipeline, funnel
-from pyfi.client.example.api import do_something_p as do_something
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfi.client.api</span> <span class="kn">import</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">funnel</span>
+<span class="kn">from</span> <span class="nn">pyfi.client.example.api</span> <span class="kn">import</span> <span class="n">do_something_p</span> <span class="k">as</span> <span class="n">do_something</span>
 
 <span class="c1"># Create a pipeline that executes tasks sequentially, passing result to next task</span>
-<span class="nv">_pipeline</span> <span class="o">=</span> pipeline<span class="o">([</span>
-   do_something<span class="o">(</span><span class="s2">&quot;One&quot;</span><span class="o">)</span>,
-   do_something<span class="o">(</span><span class="s2">&quot;Two&quot;</span><span class="o">)</span>,
+<span class="n">_pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">([</span>
+   <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;One&quot;</span><span class="p">),</span>
+   <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Two&quot;</span><span class="p">),</span>
    <span class="c1"># Create a parallel structure that executes tasks in parallel and returns the</span>
    <span class="c1"># result list</span>
-   parallel<span class="o">([</span>
-      do_something<span class="o">(</span><span class="s2">&quot;Four&quot;</span><span class="o">)</span>,
-      do_something<span class="o">(</span><span class="s2">&quot;Five&quot;</span><span class="o">)</span>,
-   <span class="o">])</span>,
-   do_something<span class="o">(</span><span class="s2">&quot;Three&quot;</span><span class="o">)])</span>
+   <span class="n">parallel</span><span class="p">([</span>
+      <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Four&quot;</span><span class="p">),</span>
+      <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Five&quot;</span><span class="p">),</span>
+   <span class="p">]),</span>
+   <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Three&quot;</span><span class="p">)])</span>
 
 <span class="c1"># Create another parallel structure using the above pipeline as one of its tasks</span>
-<span class="nv">_parallel</span> <span class="o">=</span> parallel<span class="o">([</span>
-   _pipeline,
-   do_something<span class="o">(</span><span class="s2">&quot;Six&quot;</span><span class="o">)</span>,
-   do_something<span class="o">(</span><span class="s2">&quot;Seven&quot;</span><span class="o">)])</span>
+<span class="n">_parallel</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">([</span>
+   <span class="n">_pipeline</span><span class="p">,</span>
+   <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Six&quot;</span><span class="p">),</span>
+   <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Seven&quot;</span><span class="p">)])</span>
 
 <span class="c1"># Create a funnel structure that executes all its tasks passing the result to the</span>
 <span class="c1"># single, final task</span>
-<span class="nv">_funnel</span> <span class="o">=</span> funnel<span class="o">([</span>
-   do_something<span class="o">(</span><span class="s2">&quot;Eight&quot;</span><span class="o">)</span>,
-   _parallel,
-   do_something<span class="o">(</span><span class="s2">&quot;Nine&quot;</span><span class="o">)])</span>
+<span class="n">_funnel</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">([</span>
+   <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Eight&quot;</span><span class="p">),</span>
+   <span class="n">_parallel</span><span class="p">,</span>
+   <span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Nine&quot;</span><span class="p">)])</span>
 
 <span class="c1"># Gather the result from the _funnel and send it to do_something(&quot;Four&quot;)</span>
-print<span class="o">(</span><span class="s2">&quot;FUNNEL: &quot;</span>, _funnel<span class="o">(</span>do_something<span class="o">(</span><span class="s2">&quot;Four&quot;</span><span class="o">))</span>.get<span class="o">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FUNNEL: &quot;</span><span class="p">,</span> <span class="n">_funnel</span><span class="p">(</span><span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Four&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="defining-socket-functions">
+<h2>Defining Socket Functions<a class="headerlink" href="#defining-socket-functions" title="Permalink to this headline">¶</a></h2>
+<p>Once you’ve built out your flow and infrastructure to support it, you can create convenient types that represent your python functions via the Socket class.</p>
+<p>For the parallel flow above, we import the .p (or partial) signature from this file, which comes from our Socket we created earlier named ‘pyfi.processors.sample.do_something’.
+Remember, the socket captures the module (from its parent Processor) and function name within that module you want to run. Think of it like an endpoint with a queue in front of it.</p>
+<p>We take one step further in the file below and rename Socket class to Function simply as a linguistic preference in this context.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfi.client.api</span> <span class="kn">import</span> <span class="n">Socket</span> <span class="k">as</span> <span class="n">Function</span>
+
+<span class="n">do_something</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;pyfi.processors.sample.do_something&#39;</span><span class="p">)</span>
+<span class="n">do_something_p</span> <span class="o">=</span> <span class="n">do_something</span><span class="o">.</span><span class="n">p</span>
+
+<span class="n">do_this</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;pyfi.processors.sample.do_this&#39;</span><span class="p">)</span>
+<span class="n">do_this_p</span> <span class="o">=</span> <span class="n">do_this</span><span class="o">.</span><span class="n">p</span>
+</pre></div>
+</div>
+<p>Once we’ve created our function definitions above, we can use them like normal python functions as in the parallel workflow above!</p>
 </div>
 </div>
 

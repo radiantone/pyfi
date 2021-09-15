@@ -156,13 +156,19 @@
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-nodes">nodes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-plug">plug</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-plugs">plugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-processor">processor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-processors">processors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-queues">queues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-scheduler">scheduler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-schedulers">schedulers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-socket">socket</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-sockets">sockets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-stats">stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-task">task</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-tasks">tasks</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-user">user</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-users">users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-worker">worker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-workers">workers</a></li>
 </ul>
 </li>
@@ -724,6 +730,12 @@
 <dd><p>Process pool for message dispatches</p>
 </dd></dl>
 
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-agent-start-s">
+<span id="cmdoption-pyfi-agent-start-size"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;size&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-agent-start-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum number of messages on worker internal queue</p>
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="pyfi-api">
@@ -927,7 +939,7 @@
 </div>
 <div class="section" id="pyfi-ls-call">
 <h4>call<a class="headerlink" href="#pyfi-ls-call" title="Permalink to this headline">¶</a></h4>
-<p>List details about a call record</p>
+<p>List a call</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls call <span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -1046,6 +1058,13 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="pyfi-ls-processor">
+<h4>processor<a class="headerlink" href="#pyfi-ls-processor" title="Permalink to this headline">¶</a></h4>
+<p>List a processor</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls processor <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="pyfi-ls-processors">
 <h4>processors<a class="headerlink" href="#pyfi-ls-processors" title="Permalink to this headline">¶</a></h4>
 <p>List processors</p>
@@ -1081,6 +1100,13 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="pyfi-ls-scheduler">
+<h4>scheduler<a class="headerlink" href="#pyfi-ls-scheduler" title="Permalink to this headline">¶</a></h4>
+<p>List a scheduler</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls scheduler <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="pyfi-ls-schedulers">
 <h4>schedulers<a class="headerlink" href="#pyfi-ls-schedulers" title="Permalink to this headline">¶</a></h4>
 <p>List queues</p>
@@ -1088,10 +1114,31 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="pyfi-ls-socket">
+<h4>socket<a class="headerlink" href="#pyfi-ls-socket" title="Permalink to this headline">¶</a></h4>
+<p>List a socket</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls socket <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="pyfi-ls-sockets">
 <h4>sockets<a class="headerlink" href="#pyfi-ls-sockets" title="Permalink to this headline">¶</a></h4>
 <p>List sockets</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls sockets <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pyfi-ls-stats">
+<h4>stats<a class="headerlink" href="#pyfi-ls-stats" title="Permalink to this headline">¶</a></h4>
+<p>List object stats</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls stats <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pyfi-ls-task">
+<h4>task<a class="headerlink" href="#pyfi-ls-task" title="Permalink to this headline">¶</a></h4>
+<p>List a task</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls task <span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -1126,6 +1173,13 @@
 <h4>users<a class="headerlink" href="#pyfi-ls-users" title="Permalink to this headline">¶</a></h4>
 <p>List users</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls users <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pyfi-ls-worker">
+<h4>worker<a class="headerlink" href="#pyfi-ls-worker" title="Permalink to this headline">¶</a></h4>
+<p>List a worker</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls worker <span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 </div>

@@ -102,15 +102,15 @@ Creating Your First Flow
 
    $ pyfi add queue -n pyfi.queue1 -t direct
    $ pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -h localhost
-   $ pyfi add socket -n proc1.socket1 -q pyfi.queue1 -pn proc1 -t do_something
-   $ pyfi add socket -n proc1.socket2 -q pyfi.queue1 -pn proc1 -t do_this
-   $ pyfi task run --socket proc1.socket2 --data "['some data']"
+   $ pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
+   $ pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
+   $ pyfi task run --socket pyfi.processors.sample.do_this --data "['some data']"
    Do this: ['some data']
 
 Running a Parallel Workflow
 ---------------------------
 
-.. code-block:: bash
+.. code-block:: python
 
    from pyfi.client.api import parallel, pipeline, funnel
    from pyfi.client.example.api import do_something_p as do_something
@@ -142,3 +142,25 @@ Running a Parallel Workflow
 
    # Gather the result from the _funnel and send it to do_something("Four")
    print("FUNNEL: ", _funnel(do_something("Four")).get())
+
+Defining Socket Functions
+-------------------------
+
+Once you've built out your flow and infrastructure to support it, you can create convenient types that represent your python functions via the Socket class.
+
+For the parallel flow above, we import the .p (or partial) signature from this file, which comes from our Socket we created earlier named 'pyfi.processors.sample.do_something'.
+Remember, the socket captures the module (from its parent Processor) and function name within that module you want to run. Think of it like an endpoint with a queue in front of it.
+
+We take one step further in the file below and rename Socket class to Function simply as a linguistic preference in this context.
+
+.. code-block:: python
+
+   from pyfi.client.api import Socket as Function
+
+   do_something = Function(name='pyfi.processors.sample.do_something')
+   do_something_p = do_something.p
+
+   do_this = Function(name='pyfi.processors.sample.do_this')
+   do_this_p = do_this.p
+
+Once we've created our function definitions above, we can use them like normal python functions as in the parallel workflow above!
