@@ -1,5 +1,7 @@
 ![logo](./screens/pyfi.svg)
 
+[![Documentation Status](https://readthedocs.org/projects/pyfi/badge/?version=latest)](https://pyfi.readthedocs.io/en/latest/?badge=latest)
+
 A distributed data flow and computation system that runs on transactional messaging infrastructure. PYFI is designed to operate as a NVM Networked-Virtual-Machine by implementing distributed logic over networked hardware CPU/GPU processors and is suitable for all kinds of computational tasks.
 
 The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized, best-of-breed tooling to support [different layers](#network-layers) of concern, such as:
