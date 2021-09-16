@@ -19,7 +19,6 @@ Documentation Outline
    :caption: Technology
    :maxdepth: 2
 
-   design/index
    architecture/index
    database/index
    servers/index
