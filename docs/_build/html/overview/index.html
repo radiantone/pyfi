@@ -96,22 +96,20 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#managed-compute-environment">Managed Compute environment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#simple-parallel-workflows">Simple, Parallel Workflows</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#persistent-reliable-tasks">Persistent, Reliable Tasks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#high-level-architecture">High Level Architecture</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#virtual-processors">Virtual Processors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#at-scale-design">At Scale Design</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#event-driven">Event Driven</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#message-oriented-execution-graphs">Message-Oriented Execution Graphs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#execution-stack">Execution Stack</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#micro-scheduling">Micro-Scheduling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#a-true-elastic-compute-platform">A True Elastic Compute Platform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#system-benefits">System Benefits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ecosystem-of-supported-roles">Ecosystem of Supported Roles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#powerful-next-gen-ui">Powerful, Next-Gen UI</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#managed-compute-environment">Managed Compute environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-parallel-workflows">Simple, Parallel Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#persistent-reliable-tasks">Persistent, Reliable Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-architecture">High Level Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-processors">Virtual Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#at-scale-design">At Scale Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event-driven">Event Driven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message-oriented-execution-graphs">Message-Oriented Execution Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#execution-stack">Execution Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#micro-scheduling">Micro-Scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-true-elastic-compute-platform">A True Elastic Compute Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-benefits">System Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ecosystem-of-supported-roles">Ecosystem of Supported Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#powerful-next-gen-ui">Powerful, Next-Gen UI</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../designgoals/index.html">Goals</a></li>
@@ -238,8 +236,9 @@
 </ul>
 <p>PYFI is designed as a single, extensible platform for building reliable &amp; persistent computational workflows. It relieves developers from having to know where and when tasks get executed or having to configure client side services.
 In addition, PYFI’s multiple API’s are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the big picture.</p>
+</div>
 <div class="section" id="simple-parallel-workflows">
-<h3>Simple, Parallel Workflows<a class="headerlink" href="#simple-parallel-workflows" title="Permalink to this headline">¶</a></h3>
+<h2>Simple, Parallel Workflows<a class="headerlink" href="#simple-parallel-workflows" title="Permalink to this headline">¶</a></h2>
 <p>PYFI exposes simple APIs that make writing powerful, distributed workflows fast and easy. A few examples below.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Python API Complex Workflow With pipeline &amp; parallel functions</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
@@ -321,13 +320,13 @@ pyfi.processors.sample.do_something
 </div>
 </div>
 <div class="section" id="persistent-reliable-tasks">
-<h3>Persistent, Reliable Tasks<a class="headerlink" href="#persistent-reliable-tasks" title="Permalink to this headline">¶</a></h3>
+<h2>Persistent, Reliable Tasks<a class="headerlink" href="#persistent-reliable-tasks" title="Permalink to this headline">¶</a></h2>
 <p>Task calls in your workflows are completely persisent, meaning they are stored in the PYFI network (database) and delivered to the task at the soonest possible time.
 This depends when the processor hosting the task is available and free to do the compute, but the task call will remain active until it has completed. If the task worker fails for any reason, the task can be retried on another node.
 These qualities of service are completely invisible to the application or user script.</p>
 </div>
 <div class="section" id="high-level-architecture">
-<h3>High Level Architecture<a class="headerlink" href="#high-level-architecture" title="Permalink to this headline">¶</a></h3>
+<h2>High Level Architecture<a class="headerlink" href="#high-level-architecture" title="Permalink to this headline">¶</a></h2>
 <p>PYFI’s high level architecture can be seen in the diagram below. Central to the architecture is the <strong>PYFI Model Database</strong> which stores the relational meta-model for the PYFI compute network. This database provides the <em>single source of truth</em> for the runtime operation of the distributed architecture.
 Equally as important is the <strong>reliable message broker</strong> which is the heart of PYFI’s execution model. Workflows execute functions just like any other python code, but those functions trigger persistent requests for PYFI to execute a remote task when the compute resources are available. The message broker handles  all the runtime orchestration with compute notes to carry out tasks.</p>
 <div class="figure align-center" id="id6">
@@ -336,7 +335,7 @@ Equally as important is the <strong>reliable message broker</strong> which is th
 </div>
 </div>
 <div class="section" id="virtual-processors">
-<h3>Virtual Processors<a class="headerlink" href="#virtual-processors" title="Permalink to this headline">¶</a></h3>
+<h2>Virtual Processors<a class="headerlink" href="#virtual-processors" title="Permalink to this headline">¶</a></h2>
 <p>PYFI introduces the notion of <strong>virtual processors</strong> that network together to form a reliable and distributed mesh topology for executing compute tasks.</p>
 <p>PYFI Processors are object abstractions that capture the location, version and definition of python modules and functions via your own git repository. This trusted code model is important as it establishes the contract between your code, PYFI and virtual processors where the code is to be executed.
 This relationship must be strong and well-defined.</p>
@@ -344,7 +343,7 @@ This relationship must be strong and well-defined.</p>
 <p>This type of service (or task) mesh architecture allows for fine-grained scalability characteristics that benefit the peformance and stability of the network.</p>
 </div>
 <div class="section" id="at-scale-design">
-<h3>At Scale Design<a class="headerlink" href="#at-scale-design" title="Permalink to this headline">¶</a></h3>
+<h2>At Scale Design<a class="headerlink" href="#at-scale-design" title="Permalink to this headline">¶</a></h2>
 <p>PYFI is designed to operate “at scale”, which means there is a one-to-one correspondence between logic compute units (processors) and physical compute units (CPU cores).
 This provides a number of obvious and inherent benefits such as hardware redundancy, high-availability, fault-tolerance, fail-over, performance and ease of maintenance.</p>
 <div class="figure align-center" id="id7">
@@ -353,31 +352,31 @@ This provides a number of obvious and inherent benefits such as hardware redunda
 </div>
 </div>
 <div class="section" id="event-driven">
-<h3>Event Driven<a class="headerlink" href="#event-driven" title="Permalink to this headline">¶</a></h3>
+<h2>Event Driven<a class="headerlink" href="#event-driven" title="Permalink to this headline">¶</a></h2>
 <p>PYFI is an event driven architecture from the bottom (data) to the top (ui). This design approach allows it to scale smoothly and not overconsume resources. Messages and notifications are sent when they are available which eliminates the need for <em>long polling</em> or similar resource intensive designs.
 Because PYFI is purely event driven, when there are no events, PYFI is respectful of system resources and can idle - allowing kernel schedulers and other system tasks to operate as needed.</p>
 </div>
 <div class="section" id="message-oriented-execution-graphs">
-<h3>Message-Oriented Execution Graphs<a class="headerlink" href="#message-oriented-execution-graphs" title="Permalink to this headline">¶</a></h3>
+<h2>Message-Oriented Execution Graphs<a class="headerlink" href="#message-oriented-execution-graphs" title="Permalink to this headline">¶</a></h2>
 <p>PYFI differs from other dataflow engines in that it is fully distributed and runs “at-scale” across heterogeneous infrastructure and computational resources.</p>
 <p>It establishes a logical directed-graph (DG) overlay network across compute nodes and executes your custom processor scripts (python, node, bash).</p>
 <p>Using the power of reliable, transactional messaging, compute tasks are never lost, discarded or undone. Fault tolerance and load-balancing are intrinsic qualities of PYFI and not tacked on as a separate process, which itself would be a failure point.</p>
 </div>
 <div class="section" id="execution-stack">
-<h3>Execution Stack<a class="headerlink" href="#execution-stack" title="Permalink to this headline">¶</a></h3>
+<h2>Execution Stack<a class="headerlink" href="#execution-stack" title="Permalink to this headline">¶</a></h2>
 <p>There are various layers within PYFI that allow it to scale seamless and expose simple APIs that do powerful things behind the scenes. A quick glance at the lifecycle of a PYFI python task is below.
 Various qualities of service are offered by each layer, most of which are implied during a task invocation.</p>
 <img alt="../_images/architecture4.png" class="align-center" src="../_images/architecture4.png" />
 </div>
 <div class="section" id="micro-scheduling">
-<h3>Micro-Scheduling<a class="headerlink" href="#micro-scheduling" title="Permalink to this headline">¶</a></h3>
+<h2>Micro-Scheduling<a class="headerlink" href="#micro-scheduling" title="Permalink to this headline">¶</a></h2>
 <p>PYFI uses a scheduling design that will allow tasks to fully utilize the available CPUs in the PYFI network, if processors are created in the PYFI database. PYFI will never consume more resources than what is requested in its database.
 Although traditional batch scheduling design allows for blocks of compute resources to be dedicated to one task or flow, it comes at the expense of resource utilization and wait time for other requests. Micro-scheduling seeks to remedy this situation and provide better compute efficiency which means higher task throughput and more satisfied users.</p>
 <img alt="../_images/scheduler1.png" src="../_images/scheduler1.png" />
 <img alt="../_images/scheduler2.png" src="../_images/scheduler2.png" />
 </div>
 <div class="section" id="a-true-elastic-compute-platform">
-<h3>A True Elastic Compute Platform<a class="headerlink" href="#a-true-elastic-compute-platform" title="Permalink to this headline">¶</a></h3>
+<h2>A True Elastic Compute Platform<a class="headerlink" href="#a-true-elastic-compute-platform" title="Permalink to this headline">¶</a></h2>
 <p>PYFI provides a set of interacting compute layers that control the location and execution of managed code assets.
 With PYFI, code modules and functions can be loaded at multiple locations and invoked from clients without knowledge of where those functions are or how those functions are executed.</p>
 <p>Redundant code (processors) loaded into a PYFI network will be able to respond to higher volume of data and requests and thus can scale at will, individually.</p>
@@ -386,7 +385,7 @@ This allows the system to be resilient to hardware or network changes, as well a
 <p>All of this underlying management, hardware arriving and departing, services starting and stopping, processors moving from one host to another (or failing), is completely invisibile to the applications and clients using the system. To them, function calls will always, eventually be executed, if not immediately, in the near future when compute resources allow it.</p>
 </div>
 <div class="section" id="system-benefits">
-<h3>System Benefits<a class="headerlink" href="#system-benefits" title="Permalink to this headline">¶</a></h3>
+<h2>System Benefits<a class="headerlink" href="#system-benefits" title="Permalink to this headline">¶</a></h2>
 <p>The PYFI platform provides numerous benefits, only some of which are below.</p>
 <ul class="simple">
 <li><p><strong>A single, purpose-built platform</strong> that addresses end-to-end managed compute from the CPU to the end user. Compared to cobbled together frameworks.</p></li>
@@ -398,7 +397,7 @@ This allows the system to be resilient to hardware or network changes, as well a
 </ul>
 </div>
 <div class="section" id="ecosystem-of-supported-roles">
-<h3>Ecosystem of Supported Roles<a class="headerlink" href="#ecosystem-of-supported-roles" title="Permalink to this headline">¶</a></h3>
+<h2>Ecosystem of Supported Roles<a class="headerlink" href="#ecosystem-of-supported-roles" title="Permalink to this headline">¶</a></h2>
 <p>The PYFI compute environment is a seamless collaboration across disciplines with powerful, out-of-the-box tooling for everyone to manage their concerns, independent of the whole.
 Let’s quantify the previous sentence some. Let’s say you are in the middle of running a lengthy workflow, but elsewhere in the grid, hardware administrators need to replace hardware some of your tasks might be running on.
 With PYFI, your workflow would simply pause if it cannot find an active PYFI processor hosting the task (python function) it needs and when the hardware admins bring new hardware online, the PYFI agents resume and your workflow would continue running where it left off, seamlessly.
@@ -414,12 +413,11 @@ Sounds amazing but it’s true!</p>
 </ul>
 </div>
 <div class="section" id="powerful-next-gen-ui">
-<h3>Powerful, Next-Gen UI<a class="headerlink" href="#powerful-next-gen-ui" title="Permalink to this headline">¶</a></h3>
+<h2>Powerful, Next-Gen UI<a class="headerlink" href="#powerful-next-gen-ui" title="Permalink to this headline">¶</a></h2>
 <p>PYFI’s user interface is a powerful, next-gen no-code application that enpowers anyone to create fast, parallel workflows across PYFI’s distributed task mesh.</p>
 <img alt="../_images/pyfi1.png" src="../_images/pyfi1.png" />
 <img alt="../_images/pyfi5.png" src="../_images/pyfi5.png" />
 <img alt="../_images/pyfi7.png" src="../_images/pyfi7.png" />
-</div>
 </div>
 </div>
 

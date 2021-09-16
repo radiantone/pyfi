@@ -24,7 +24,7 @@ As a platform, PYFI is designed so you can build rich, high-performance applicat
    PYFI Platform Architecture
 
 Managed Compute environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized tooling to support different layers of concern, such as:
 
