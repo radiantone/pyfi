@@ -5,15 +5,36 @@ Overview
 
 PYFI is a distributed data flow and computation system that runs on transactional messaging infrastructure. It implements the concept of a NVM Networked-Virtual-Machine by distributing logic over networked hardware CPU/GPU processors.
 
+It offers applications and users the following benefits:
+
+- **Persistent Task & Workflow Execution** - Tasks & Workflows persist within the network
+- **Reliable Task Execution** - Tasks execution survives failure anomalies, restarts, hardware faults
+- **Simplified Workflow Functions** - Parallel, Pipeline, Funnel
+- **Powerful Compute Composition** - Build at-scale data and compute flows using CLI, UI or API
+- **Streaming Compute** - Real-time streaming compute data flows
+- **Secure & Trusted Code Exceution** - No client-side code marshalling or serialization. Code is loaded from the network side via git repositories into isolated virtual environments
+- **Micro-Scheduling** - Efficient task scheduling and 100% hardware utilization
+- **Next-Gen User Interface** - Quickly build out at-scale HPC data flows with simple and intuitive interfaces.
+
+As a platform, PYFI is designed so you can build rich, high-performance applications, services and scripts on top. Doing this provides the transparent benefits listed above and makes building powerful compute applications fast and easy.
+
+.. figure:: ../../screens/platform1.png
+   :align: center
+
+   PYFI Platform Architecture
+
+Managed Compute environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The entire PYFI stack, as a whole, provides a complete "Managed Compute Platform" (MCP) with specialized tooling to support different layers of concern, such as:
 
 - Hardware Compute Resources
 - Compute Availability & Scheduling
 - Distributed Flows
 - Python Processors
-  - Modules & Functions
+  + Modules & Functions
 - Data Logging and Streaming
-  - Real-time & Historical Metrics
+  + Real-time & Historical Metrics
   
 PYFI is designed as a single, extensible platform for building reliable & persistent computational workflows. It relieves developers from having to know where and when tasks get executed or having to configure client side services.
 In addition, PYFI's multiple API's are designed for users (of all kinds) to build complex, fully-distributed HPC apps and sharable workflows. The platform nature of PYFI sets it apart from other libraries and frameworks that only tackle part of the big picture.
@@ -109,7 +130,10 @@ High Level Architecture
 PYFI's high level architecture can be seen in the diagram below. Central to the architecture is the **PYFI Model Database** which stores the relational meta-model for the PYFI compute network. This database provides the *single source of truth* for the runtime operation of the distributed architecture.
 Equally as important is the **reliable message broker** which is the heart of PYFI's execution model. Workflows execute functions just like any other python code, but those functions trigger persistent requests for PYFI to execute a remote task when the compute resources are available. The message broker handles  all the runtime orchestration with compute notes to carry out tasks.
 
-.. image:: images/architecture2.png
+.. figure:: images/architecture2.png
+   :align: center
+
+   PYFI System Architecture
 
 Virtual Processors
 ------------------
@@ -129,7 +153,10 @@ At Scale Design
 PYFI is designed to operate "at scale", which means there is a one-to-one correspondence between logic compute units (processors) and physical compute units (CPU cores).
 This provides a number of obvious and inherent benefits such as hardware redundancy, high-availability, fault-tolerance, fail-over, performance and ease of maintenance.
 
-.. image:: images/architecture3.png
+.. figure:: images/architecture3.png
+   :align: center
+
+   PYFI At-Scale Task/CPU Architecture
 
 Event Driven
 ------------
@@ -151,6 +178,7 @@ There are various layers within PYFI that allow it to scale seamless and expose 
 Various qualities of service are offered by each layer, most of which are implied during a task invocation.
 
 .. image:: images/architecture4.png
+   :align: center
 
 Micro-Scheduling
 ----------------

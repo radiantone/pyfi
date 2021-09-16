@@ -106,7 +106,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#managed-compute">Managed Compute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-isolation">Code Isolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#design">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#layered-design">Layered Design</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../database/index.html">Database</a></li>
@@ -205,13 +205,13 @@ The slides below show the different layers and their responsibilities, starting 
 <h2>Code Isolation<a class="headerlink" href="#code-isolation" title="Permalink to this headline">¶</a></h2>
 <p>Each PYFI worker that mounts a git repository, will create a virtual environment for that code and execute the repositories <em>setup.py</em> to install the code in that virtual environment. This is beneficial for a number of reasons, but most importantly it keeps the environment for the mounted code separate from the PYFI agent’s python environment.</p>
 </div>
-<div class="section" id="design">
-<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="layered-design">
+<h2>Layered Design<a class="headerlink" href="#layered-design" title="Permalink to this headline">¶</a></h2>
 <p>PYFI is a distributed, scalable architecture and as such it is relationship between connected hardware &amp; service layers interacting as a whole.</p>
-<img alt="../_images/layer1.png" src="../_images/layer1.png" />
-<img alt="../_images/layer2.png" src="../_images/layer2.png" />
-<img alt="../_images/layer3.png" src="../_images/layer3.png" />
-<img alt="../_images/layer4.png" src="../_images/layer4.png" />
+<img alt="../_images/layer1.png" class="align-center" src="../_images/layer1.png" />
+<img alt="../_images/layer2.png" class="align-center" src="../_images/layer2.png" />
+<img alt="../_images/layer3.png" class="align-center" src="../_images/layer3.png" />
+<img alt="../_images/layer4.png" class="align-center" src="../_images/layer4.png" />
 </div>
 </div>
 

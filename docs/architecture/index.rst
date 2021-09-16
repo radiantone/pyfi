@@ -19,12 +19,16 @@ Code Isolation
 
 Each PYFI worker that mounts a git repository, will create a virtual environment for that code and execute the repositories *setup.py* to install the code in that virtual environment. This is beneficial for a number of reasons, but most importantly it keeps the environment for the mounted code separate from the PYFI agent's python environment.
 
-Design
-------
+Layered Design
+--------------
 
 PYFI is a distributed, scalable architecture and as such it is relationship between connected hardware & service layers interacting as a whole.
 
 .. image:: ../../screens/layer1.png
+   :align: center
 .. image:: ../../screens/layer2.png
+   :align: center
 .. image:: ../../screens/layer3.png
+   :align: center
 .. image:: ../../screens/layer4.png
+   :align: center
