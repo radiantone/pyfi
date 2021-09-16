@@ -247,10 +247,124 @@ Running an Agent
 ----------------
 
 .. code-block:: bash
-      :caption: PYFI database sub-commands
+      :caption: PYFI agent subcommand
+
+      $ pyfi agent 
+      Usage: pyfi agent [OPTIONS] COMMAND [ARGS]...
+
+      Run pyfi agent
+
+      Options:
+      --help  Show this message and exit.
+
+      Commands:
+      start  Run pyfi agent server
+
+
+.. code-block:: bash
+      :caption: PYFI agent subcommand
+
+      $ pyfi agent start --help
+      Usage: pyfi agent start [OPTIONS]
+
+      Run pyfi agent server
+
+      Options:
+      -p, --port INTEGER  Listen port
+      --clean             Remove work directories before launch
+      -b, --backend TEXT  Message backend URI
+      -r, --broker TEXT   Message broker URI
+      -c, --config TEXT   Config module.object import (e.g.
+                        path.to.module.MyConfigClass
+
+      -q, --queues        Run the queue monitor only
+      -u, --user TEXT     Run the worker as user
+      -p, --pool INTEGER  Process pool for message dispatches
+      -s, --size INTEGER  Maximum number of messages on worker internal queue
+      --help              Show this message and exit.
 
 Roles & Users
 -------------
 
 .. code-block:: bash
-      :caption: PYFI database sub-commands
+      :caption: PYFI user, role and privilege subcommands
+
+      $ pyfi add user --help
+      Usage: pyfi add user [OPTIONS]
+
+      Add user object to the database
+
+      Options:
+      -n, --name TEXT      [required]
+      -e, --email TEXT     [required]
+      -p, --password TEXT  [required]
+      --help               Show this message and exit.
+
+      $ pyfi add role --help
+      Usage: pyfi add role [OPTIONS]
+
+      Add role object to the database
+
+      Options:
+      -n, --name TEXT  [required]
+      --help           Show this message and exit.
+
+      $ pyfi add privilege --help
+      Usage: pyfi add privilege [OPTIONS]
+
+      Add privilege to the database
+
+      Options:
+      -u, --user TEXT  
+      -n, --name TEXT  [required]
+      -r, --role TEXT
+      --help           Show this message and exit.
+
+
+.. code-block:: bash
+      :caption: Creating a user
+
+      $ pyfi add user
+      Name: joe
+      Email: joe@xyz
+      Password: 12345
+      CREATE USER joe WITH PASSWORD '12345'
+      User "joe" added
+
+.. code-block:: bash
+      :caption: Creating a role
+
+      $ pyfi add role -n developer
+      bc15ee9d-a208-43a9-82d2-bf0810dc4380:developer:2021-09-15 21:50:40.714192
+
+.. code-block:: bash
+      :caption: Adding a privilege to a user
+
+      $ pyfi add privilege -u joe -n ADD_PROCESSOR
+      Privilege added     
+
+.. code-block:: bash
+      :caption: List a user with role_privileges
+
+      $ pyfi ls user -n joe
+      +------+--------------------------------------+----------+---------+
+      | Name |                  ID                  |  Owner   |  Email  |
+      +------+--------------------------------------+----------+---------+
+      | joe  | a8dcf9bb-c821-4d44-82f5-828dceb4cb23 | postgres | joe@xyz |
+      +------+--------------------------------------+----------+---------+
+      Privileges
+      +------+---------------+----------------------------+----------+
+      | Name |     Right     |        Last Updated        |    By    |
+      +------+---------------+----------------------------+----------+
+      | joe  | ADD_PROCESSOR | 2021-09-15 21:46:48.611286 | postgres |
+      +------+---------------+----------------------------+----------+
+
+.. code-block:: bash
+      :caption: Adding a privilege to a role
+
+      $ pyfi add privilege -r developer -n ADD_PROCESSOR
+      Privilege added    
+
+.. code-block:: bash
+      :caption: Adding a role to a user
+    

@@ -454,16 +454,132 @@ Listening to pyfi.queue1.proc1
 <div class="section" id="running-an-agent">
 <h2>Running an Agent<a class="headerlink" href="#running-an-agent" title="Permalink to this headline">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id12">
-<div class="code-block-caption"><span class="caption-text">PYFI database sub-commands</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+<div class="code-block-caption"><span class="caption-text">PYFI agent subcommand</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi agent
+Usage: pyfi agent <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+Run pyfi agent
+
+Options:
+--help  Show this message and exit.
+
+Commands:
+start  Run pyfi agent server
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">PYFI agent subcommand</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi agent start --help
+Usage: pyfi agent start <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Run pyfi agent server
+
+Options:
+-p, --port INTEGER  Listen port
+--clean             Remove work directories before launch
+-b, --backend TEXT  Message backend URI
+-r, --broker TEXT   Message broker URI
+-c, --config TEXT   Config module.object import <span class="o">(</span>e.g.
+                  path.to.module.MyConfigClass
+
+-q, --queues        Run the queue monitor only
+-u, --user TEXT     Run the worker as user
+-p, --pool INTEGER  Process pool <span class="k">for</span> message dispatches
+-s, --size INTEGER  Maximum number of messages on worker internal queue
+--help              Show this message and exit.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="roles-users">
 <h2>Roles &amp; Users<a class="headerlink" href="#roles-users" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-text">PYFI database sub-commands</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">PYFI user, role and privilege subcommands</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add user --help
+Usage: pyfi add user <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Add user object to the database
+
+Options:
+-n, --name TEXT      <span class="o">[</span>required<span class="o">]</span>
+-e, --email TEXT     <span class="o">[</span>required<span class="o">]</span>
+-p, --password TEXT  <span class="o">[</span>required<span class="o">]</span>
+--help               Show this message and exit.
+
+$ pyfi add role --help
+Usage: pyfi add role <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Add role object to the database
+
+Options:
+-n, --name TEXT  <span class="o">[</span>required<span class="o">]</span>
+--help           Show this message and exit.
+
+$ pyfi add privilege --help
+Usage: pyfi add privilege <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Add privilege to the database
+
+Options:
+-u, --user TEXT
+-n, --name TEXT  <span class="o">[</span>required<span class="o">]</span>
+-r, --role TEXT
+--help           Show this message and exit.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">Creating a user</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add user
+Name: joe
+Email: joe@xyz
+Password: <span class="m">12345</span>
+CREATE USER joe WITH PASSWORD <span class="s1">&#39;12345&#39;</span>
+User <span class="s2">&quot;joe&quot;</span> added
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">Creating a role</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add role -n developer
+bc15ee9d-a208-43a9-82d2-bf0810dc4380:developer:2021-09-15 <span class="m">21</span>:50:40.714192
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">Adding a privilege to a user</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add privilege -u joe -n ADD_PROCESSOR
+Privilege added
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">List a user with role_privileges</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi ls user -n joe
++------+--------------------------------------+----------+---------+
+<span class="p">|</span> Name <span class="p">|</span>                  ID                  <span class="p">|</span>  Owner   <span class="p">|</span>  Email  <span class="p">|</span>
++------+--------------------------------------+----------+---------+
+<span class="p">|</span> joe  <span class="p">|</span> a8dcf9bb-c821-4d44-82f5-828dceb4cb23 <span class="p">|</span> postgres <span class="p">|</span> joe@xyz <span class="p">|</span>
++------+--------------------------------------+----------+---------+
+Privileges
++------+---------------+----------------------------+----------+
+<span class="p">|</span> Name <span class="p">|</span>     Right     <span class="p">|</span>        Last Updated        <span class="p">|</span>    By    <span class="p">|</span>
++------+---------------+----------------------------+----------+
+<span class="p">|</span> joe  <span class="p">|</span> ADD_PROCESSOR <span class="p">|</span> <span class="m">2021</span>-09-15 <span class="m">21</span>:46:48.611286 <span class="p">|</span> postgres <span class="p">|</span>
++------+---------------+----------------------------+----------+
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">Adding a privilege to a role</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add privilege -r developer -n ADD_PROCESSOR
+Privilege added
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">Adding a role to a user</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
