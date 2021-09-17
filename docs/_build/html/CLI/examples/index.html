@@ -117,6 +117,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#listening">Listening</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-an-agent">Running an Agent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#roles-users">Roles &amp; Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#privileges-rights">Privileges &amp; Rights</a></li>
 </ul>
 </li>
 </ul>
@@ -581,6 +582,97 @@ Privilege added
 <div class="literal-block-wrapper docutils container" id="id20">
 <div class="code-block-caption"><span class="caption-text">Adding a role to a user</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="privileges-rights">
+<h2>Privileges &amp; Rights<a class="headerlink" href="#privileges-rights" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>right</strong> is an atomic string that names a particular <strong>privilege</strong>. It only becomes a privilege when it’s associated with a user.
+When it’s just <strong>a name</strong> we call it a <em>right</em>.</p>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">Available Rights</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rights</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ALL&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CREATE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;DB_DROP&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DB_INIT&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;START_AGENT&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;RUN_TASK&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CANCEL_TASK&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;START_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;STOP_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PAUSE_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RESUME_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LOCK_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UNLOCK_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VIEW_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VIEW_PROCESSOR_CONFIG&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VIEW_PROCESSOR_CODE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;EDIT_PROCESSOR_CONFIG&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;EDIT_PROCESSOR_CODE&#39;</span>
+
+    <span class="s1">&#39;LS_PROCESSORS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_USERS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_USER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_PLUGS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_SOCKETS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_QUEUES&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_AGENTS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_NODES&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_SCHEDULERS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LS_WORKERS&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;ADD_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_AGENT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_NODE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_PLUG&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_PRIVILEGE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_QUEUE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_ROLE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_SCHEDULER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_SOCKET&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ADD_USER&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;UPDATE_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_AGENT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_NODE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_PLUG&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_PRIVILEGE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_QUEUE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_ROLE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_SCHEDULER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_SOCKET&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UPDATE_USER&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;DELETE_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_AGENT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_NODE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_PLUG&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_PRIVILEGE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_QUEUE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_ROLE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_SCHEDULER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_SOCKET&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DELETE_USER&#39;</span><span class="p">,</span>
+
+    <span class="s1">&#39;READ_PROCESSOR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_AGENT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_NODE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_PLUG&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_PRIVILEGE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_QUEUE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_ROLE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_SCHEDULER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_SOCKET&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;READ_USER&#39;</span>
+    <span class="p">]</span>
 </pre></div>
 </div>
 </div>

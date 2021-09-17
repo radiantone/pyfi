@@ -18,7 +18,7 @@ It offers applications and users the following benefits:
 
 As a platform, PYFI is designed so you can build rich, high-performance applications, services and scripts on top. Doing this provides the transparent benefits listed above and makes building powerful compute applications fast and easy.
 
-.. figure:: ../../screens/platform1.png
+.. figure:: images/platform1.png
    :align: center
 
    PYFI Platform Architecture

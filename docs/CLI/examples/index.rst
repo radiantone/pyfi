@@ -368,3 +368,94 @@ Roles & Users
 .. code-block:: bash
       :caption: Adding a role to a user
     
+
+Privileges & Rights
+---------------------------
+
+A **right** is an atomic string that names a particular **privilege**. It only becomes a privilege when it's associated with a user.
+When it's just **a name** we call it a *right*.
+
+.. code-block:: python
+      :caption: Available Rights
+
+      rights = ['ALL',
+          'CREATE',
+          'READ',
+          'UPDATE',
+          'DELETE',
+
+          'DB_DROP',
+          'DB_INIT',
+
+          'START_AGENT',
+
+          'RUN_TASK',
+          'CANCEL_TASK',
+
+          'START_PROCESSOR',
+          'STOP_PROCESSOR',
+          'PAUSE_PROCESSOR',
+          'RESUME_PROCESSOR',
+          'LOCK_PROCESSOR',
+          'UNLOCK_PROCESSOR',
+          'VIEW_PROCESSOR',
+          'VIEW_PROCESSOR_CONFIG',
+          'VIEW_PROCESSOR_CODE',
+          'EDIT_PROCESSOR_CONFIG',
+          'EDIT_PROCESSOR_CODE'
+
+          'LS_PROCESSORS',
+          'LS_USERS',
+          'LS_USER',
+          'LS_PLUGS',
+          'LS_SOCKETS',
+          'LS_QUEUES',
+          'LS_AGENTS',
+          'LS_NODES',
+          'LS_SCHEDULERS',
+          'LS_WORKERS',
+
+          'ADD_PROCESSOR',
+          'ADD_AGENT',
+          'ADD_NODE',
+          'ADD_PLUG',
+          'ADD_PRIVILEGE',
+          'ADD_QUEUE',
+          'ADD_ROLE',
+          'ADD_SCHEDULER',
+          'ADD_SOCKET',
+          'ADD_USER',
+
+          'UPDATE_PROCESSOR',
+          'UPDATE_AGENT',
+          'UPDATE_NODE',
+          'UPDATE_PLUG',
+          'UPDATE_PRIVILEGE',
+          'UPDATE_QUEUE',
+          'UPDATE_ROLE',
+          'UPDATE_SCHEDULER',
+          'UPDATE_SOCKET',
+          'UPDATE_USER',
+
+          'DELETE_PROCESSOR',
+          'DELETE_AGENT',
+          'DELETE_NODE',
+          'DELETE_PLUG',
+          'DELETE_PRIVILEGE',
+          'DELETE_QUEUE',
+          'DELETE_ROLE',
+          'DELETE_SCHEDULER',
+          'DELETE_SOCKET',
+          'DELETE_USER',
+
+          'READ_PROCESSOR',
+          'READ_AGENT',
+          'READ_NODE',
+          'READ_PLUG',
+          'READ_PRIVILEGE',
+          'READ_QUEUE',
+          'READ_ROLE',
+          'READ_SCHEDULER',
+          'READ_SOCKET',
+          'READ_USER'
+          ]
