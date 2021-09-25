@@ -12,7 +12,7 @@ It offers applications and users the following benefits:
 - **Simplified Workflow Functions** - Parallel, Pipeline, Funnel
 - **Powerful Compute Composition** - Build at-scale data and compute flows using CLI, UI or API
 - **Streaming Compute** - Real-time streaming compute data flows
-- **Secure & Trusted Code Exceution** - No client-side code marshalling or serialization. Code is loaded from the network side via git repositories into isolated virtual environments
+- **Secure & Trusted Code Execution** - No client-side code marshalling or serialization. Code is loaded from the network side via git repositories into isolated virtual environments
 - **Micro-Scheduling** - Efficient task scheduling and 100% hardware utilization
 - **Next-Gen User Interface** - Quickly build out at-scale HPC data flows with simple and intuitive interfaces.
 
@@ -128,7 +128,7 @@ These qualities of service are completely invisible to the application or user s
 High Level Architecture
 -----------------------
 PYFI's high level architecture can be seen in the diagram below. Central to the architecture is the **PYFI Model Database** which stores the relational meta-model for the PYFI compute network. This database provides the *single source of truth* for the runtime operation of the distributed architecture.
-Equally as important is the **reliable message broker** which is the heart of PYFI's execution model. Workflows execute functions just like any other python code, but those functions trigger persistent requests for PYFI to execute a remote task when the compute resources are available. The message broker handles  all the runtime orchestration with compute notes to carry out tasks.
+Equally as important is the **reliable message broker** which is the heart of PYFI's execution model. Workflows execute functions just like any other python code, but those functions trigger persistent requests for PYFI to execute a remote task when the compute resources are available. The message broker handles  all the runtime orchestration with compute nodes to carry out tasks.
 
 .. figure:: images/architecture2.png
    :align: center
