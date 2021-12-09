@@ -334,20 +334,14 @@ Remember, the socket captures the module (from its parent Processor) and functio
 <div class="section" id="executing-socket-functions">
 <h3>Executing Socket Functions<a class="headerlink" href="#executing-socket-functions" title="Permalink to this headline">¶</a></h3>
 <p>Executing socket functions from python is very easy. Since we can create the socket ahead of time, we only need to refer to it by name as above.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfi.client.api</span> <span class="kn">import</span> <span class="n">Socket</span> <span class="k">as</span> <span class="n">Function</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfi.client.examples.api</span> <span class="kn">import</span> <span class="n">do_something_p</span> <span class="k">as</span> <span class="n">do_something</span>
 
-<span class="n">do_something</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;pyfi.processors.sample.do_something&#39;</span><span class="p">)</span>
-<span class="n">do_something_p</span> <span class="o">=</span> <span class="n">do_something</span><span class="o">.</span><span class="n">p</span>
+<span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Some text!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The just invoke the function reference as you normally would. If you are using the function within a parallel API structure such as <code class="docutils literal notranslate"><span class="pre">parallel</span></code>, <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>, <code class="docutils literal notranslate"><span class="pre">funnel</span></code> etc then you should use the <code class="docutils literal notranslate"><span class="pre">partial</span></code> version of the function signature.
+<p>The just invoke the function reference as you normally would. If you are using the function within a parallel API structure such as <code class="docutils literal notranslate"><span class="pre">parallel</span></code>, <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>, <code class="docutils literal notranslate"><span class="pre">funnel</span></code> etc then you should use the <code class="docutils literal notranslate"><span class="pre">partial</span></code> (.p, _p) version of the function signature.
 This allows PYFI to add arguments to the task when it is invoked. The invocation is deferred so it doesn’t happen at the time you declare your workflow. The reason is because your task will execute on thos remote CPU at a time when the workflow reaches that task.
 So the .p partial is a <code class="docutils literal notranslate"><span class="pre">signature</span></code> for your task in that respect.</p>
-<p>However, if you simply want to execute your task and control the execution flow yourself, you can use the Function reference or <cite>do_something</cite> in the above code fragment.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Some text!&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>For readability its customary to remap the partial signature as in the workflow below.</p>
 </div>
 </div>
 <div class="section" id="running-a-parallel-workflow">

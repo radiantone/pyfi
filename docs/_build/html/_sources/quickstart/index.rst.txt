@@ -158,23 +158,13 @@ Executing socket functions from python is very easy. Since we can create the soc
 
 .. code-block:: python
 
-   from pyfi.client.api import Socket as Function
-
-   do_something = Function(name='pyfi.processors.sample.do_something')
-   do_something_p = do_something.p
-
-The just invoke the function reference as you normally would. If you are using the function within a parallel API structure such as ``parallel``, ``pipeline``, ``funnel`` etc then you should use the ``partial`` version of the function signature.
-This allows PYFI to add arguments to the task when it is invoked. The invocation is deferred so it doesn't happen at the time you declare your workflow. The reason is because your task will execute on thos remote CPU at a time when the workflow reaches that task.
-So the .p partial is a ``signature`` for your task in that respect.
-
-However, if you simply want to execute your task and control the execution flow yourself, you can use the Function reference or `do_something` in the above code fragment.
-
-.. code-block:: python
+   from pyfi.client.examples.api import do_something_p as do_something
 
    do_something("Some text!")
-   
-For readability its customary to remap the partial signature as in the workflow below.
 
+The just invoke the function reference as you normally would. If you are using the function within a parallel API structure such as ``parallel``, ``pipeline``, ``funnel`` etc then you should use the ``partial`` (.p, _p) version of the function signature.
+This allows PYFI to add arguments to the task when it is invoked. The invocation is deferred so it doesn't happen at the time you declare your workflow. The reason is because your task will execute on thos remote CPU at a time when the workflow reaches that task.
+So the .p partial is a ``signature`` for your task in that respect.
 
 Running a Parallel Workflow
 ---------------------------

@@ -110,6 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#pyfi">pyfi</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-add">add</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-add-agent">agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-add-log">log</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-add-node">node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-add-plug">plug</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-add-privilege">privilege</a></li>
@@ -124,10 +125,16 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-agent">agent</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-agent-start">start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-agent-stop">stop</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-api">api</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-api-start">start</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyfi-compose">compose</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-compose-build">build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-compose-kill">kill</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-db">db</a><ul>
@@ -139,6 +146,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-delete">delete</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-delete-calls">calls</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-delete-processor">processor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-delete-socket">socket</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-delete-task">task</a></li>
@@ -146,18 +154,26 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-listen">listen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyfi-login">login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyfi-logout">logout</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-ls">ls</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-agent">agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-agents">agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-call">call</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-calls">calls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-job">job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-jobs">jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-network">network</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-node">node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-nodes">nodes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-plug">plug</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-plugs">plugs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-processor">processor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-processors">processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-queue">queue</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-queues">queues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-role">role</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-roles">roles</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-scheduler">scheduler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-schedulers">schedulers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-socket">socket</a></li>
@@ -167,6 +183,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-tasks">tasks</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-user">user</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-users">users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-work">work</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-worker">worker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-ls-workers">workers</a></li>
 </ul>
@@ -200,12 +217,18 @@
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-update-socket">socket</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#pyfi-user">user</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-user-add">add</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-user-remove">remove</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-web">web</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-web-start">start</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-whoami">whoami</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pyfi-worker">worker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyfi-worker-kill">kill</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pyfi-worker-start">start</a></li>
 </ul>
 </li>
@@ -326,6 +349,24 @@
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-a">
+<span id="cmdoption-pyfi-api"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--api</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;api&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message broker API URI</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-u">
+<span id="cmdoption-pyfi-user"></span><span class="sig-name descname"><span class="pre">-u</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--user</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;user&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message broker API user</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-p">
+<span id="cmdoption-pyfi-password"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--password</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;password&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message broker API password</p>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pyfi-i">
 <span id="cmdoption-pyfi-ini"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ini</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ini&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-i" title="Permalink to this definition">¶</a></dt>
 <dd><p>PYFI .ini configuration file</p>
@@ -361,6 +402,31 @@
 <dt class="sig sig-object std" id="cmdoption-pyfi-add-agent-n">
 <span id="cmdoption-pyfi-add-agent-name"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;name&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-agent-n" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Required</strong></p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyfi-add-log">
+<h4>log<a class="headerlink" href="#pyfi-add-log" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi add log <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-add-log-i">
+<span id="cmdoption-pyfi-add-log-id"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--id</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;id&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-log-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>id of object</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-add-log-s">
+<span id="cmdoption-pyfi-add-log-source"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--source</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;source&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-log-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Source name</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-add-log-t">
+<span id="cmdoption-pyfi-add-log-text"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--text</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;text&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-log-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text of log</p>
 </dd></dl>
 
 </div>
@@ -404,15 +470,15 @@
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-pyfi-add-plug-si">
-<span id="cmdoption-pyfi-add-plug-socketid"></span><span class="sig-name descname"><span class="pre">-si</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--socketid</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;socketid&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-plug-si" title="Permalink to this definition">¶</a></dt>
-<dd><p>Socket id</p>
+<dt class="sig sig-object std" id="cmdoption-pyfi-add-plug-s">
+<span id="cmdoption-pyfi-add-plug-source"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--source</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;source&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-plug-s" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> Source socket name</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-pyfi-add-plug-sn">
-<span id="cmdoption-pyfi-add-plug-socketname"></span><span class="sig-name descname"><span class="pre">-sn</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--socketname</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;socketname&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-plug-sn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Socket name</p>
+<dt class="sig sig-object std" id="cmdoption-pyfi-add-plug-t">
+<span id="cmdoption-pyfi-add-plug-target"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--target</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;target&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-plug-t" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> Target socket name</p>
 </dd></dl>
 
 <dl class="std option">
@@ -438,7 +504,8 @@
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pyfi-add-privilege-u">
 <span id="cmdoption-pyfi-add-privilege-user"></span><span class="sig-name descname"><span class="pre">-u</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--user</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;user&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-add-privilege-u" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p><strong>Required</strong></p>
+</dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pyfi-add-privilege-n">
@@ -674,7 +741,7 @@
 </div>
 <div class="section" id="pyfi-agent">
 <h3>agent<a class="headerlink" href="#pyfi-agent" title="Permalink to this headline">¶</a></h3>
-<p>Run pyfi agent</p>
+<p>Commands for remote agent management</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi agent <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
 </div>
@@ -739,6 +806,25 @@
 <dd><p>Maximum number of messages on worker internal queue</p>
 </dd></dl>
 
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-agent-start-h">
+<span id="cmdoption-pyfi-agent-start-host"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--host</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;host&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-agent-start-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remote hostname to start the agent via ssh</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-agent-start-1">
+<span id="cmdoption-pyfi-agent-start-path"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;path&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-agent-start-1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remote PATH to use</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyfi-agent-stop">
+<h4>stop<a class="headerlink" href="#pyfi-agent-stop" title="Permalink to this headline">¶</a></h4>
+<p>Stop an agent</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi agent stop <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="pyfi-api">
@@ -764,6 +850,40 @@
 <dt class="sig sig-object std" id="cmdoption-pyfi-api-start-p">
 <span id="cmdoption-pyfi-api-start-port"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--port</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;port&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-api-start-p" title="Permalink to this definition">¶</a></dt>
 <dd><p>Listen port</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="pyfi-compose">
+<h3>compose<a class="headerlink" href="#pyfi-compose" title="Permalink to this headline">¶</a></h3>
+<p>Manage declarative infrastructure files</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi compose <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<div class="section" id="pyfi-compose-build">
+<h4>build<a class="headerlink" href="#pyfi-compose-build" title="Permalink to this headline">¶</a></h4>
+<p>Build infrastructure from a yaml file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi compose build <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-compose-build-f">
+<span id="cmdoption-pyfi-compose-build-file"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;file&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-compose-build-f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="pyfi-compose-kill">
+<h4>kill<a class="headerlink" href="#pyfi-compose-kill" title="Permalink to this headline">¶</a></h4>
+<p>Kill a running infrastructure</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi compose <span class="nb">kill</span> <span class="o">[</span>OPTIONS<span class="o">]</span> FILENAME
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-compose-kill-arg-FILENAME">
+<span id="cmdoption-pyfi-compose-kill-arg-filename"></span><span class="sig-name descname"><span class="pre">FILENAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-compose-kill-arg-FILENAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
 </dd></dl>
 
 </div>
@@ -794,6 +914,13 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi db init <span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-db-init-r">
+<span id="cmdoption-pyfi-db-init-rls"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--rls</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-db-init-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Row level security</p>
+</dd></dl>
+
 </div>
 <div class="section" id="pyfi-db-json">
 <h4>json<a class="headerlink" href="#pyfi-db-json" title="Permalink to this headline">¶</a></h4>
@@ -836,6 +963,13 @@
 <p>Delete an object from the database</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi delete <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
+</div>
+<div class="section" id="pyfi-delete-calls">
+<h4>calls<a class="headerlink" href="#pyfi-delete-calls" title="Permalink to this headline">¶</a></h4>
+<p>Delete all the call records</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi delete calls <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="pyfi-delete-processor">
 <h4>processor<a class="headerlink" href="#pyfi-delete-processor" title="Permalink to this headline">¶</a></h4>
@@ -920,6 +1054,27 @@
 </dd></dl>
 
 </div>
+<div class="section" id="pyfi-login">
+<h3>login<a class="headerlink" href="#pyfi-login" title="Permalink to this headline">¶</a></h3>
+<p>Log into PYFI CLI</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi login <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-login-d">
+<span id="cmdoption-pyfi-login-database"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--database</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-login-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database login only</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyfi-logout">
+<h3>logout<a class="headerlink" href="#pyfi-logout" title="Permalink to this headline">¶</a></h3>
+<p>Logout current user</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi <span class="nb">logout</span> <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="pyfi-ls">
 <h3>ls<a class="headerlink" href="#pyfi-ls" title="Permalink to this headline">¶</a></h3>
 <p>List database objects and their relations</p>
@@ -962,7 +1117,7 @@
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pyfi-ls-call-r">
 <span id="cmdoption-pyfi-ls-call-result"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--result</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-ls-call-r" title="Permalink to this definition">¶</a></dt>
-<dd><p>Include result of call</p>
+<dd><p>Show result of call</p>
 </dd></dl>
 
 <dl class="std option">
@@ -1010,6 +1165,53 @@
 <dt class="sig sig-object std" id="cmdoption-pyfi-ls-calls-a">
 <span id="cmdoption-pyfi-ls-calls-ascend"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ascend</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-ls-calls-a" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</div>
+<div class="section" id="pyfi-ls-job">
+<h4>job<a class="headerlink" href="#pyfi-ls-job" title="Permalink to this headline">¶</a></h4>
+<p>List a job</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls job <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pyfi-ls-jobs">
+<h4>jobs<a class="headerlink" href="#pyfi-ls-jobs" title="Permalink to this headline">¶</a></h4>
+<p>List scheduled jobs</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls <span class="nb">jobs</span> <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-jobs-n">
+<span id="cmdoption-pyfi-ls-jobs-name"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;name&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-jobs-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of processor</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyfi-ls-network">
+<h4>network<a class="headerlink" href="#pyfi-ls-network" title="Permalink to this headline">¶</a></h4>
+<p>List the PYFI network</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls network <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-network-h">
+<span id="cmdoption-pyfi-ls-network-horizontal"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--horizontal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-ls-network-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Horizontal tree mode</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-network-v">
+<span id="cmdoption-pyfi-ls-network-vertical"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--vertical</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-ls-network-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertical tree mode</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-network-n">
+<span id="cmdoption-pyfi-ls-network-node"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--node</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;node&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-network-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>List network for node</p>
+</dd></dl>
 
 </div>
 <div class="section" id="pyfi-ls-node">
@@ -1105,6 +1307,11 @@
 <dd></dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-processors-c">
+<span id="cmdoption-pyfi-ls-processors-commit"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--commit</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-ls-processors-c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-pyfi-ls-processors-m">
 <span id="cmdoption-pyfi-ls-processors-module"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--module</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-ls-processors-m" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1115,12 +1322,75 @@
 <dd></dd></dl>
 
 </div>
+<div class="section" id="pyfi-ls-queue">
+<h4>queue<a class="headerlink" href="#pyfi-ls-queue" title="Permalink to this headline">¶</a></h4>
+<p>List a queue</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls queue <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-queue-id">
+<span class="sig-name descname"><span class="pre">--id</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;id&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-queue-id" title="Permalink to this definition">¶</a></dt>
+<dd><p>ID of call</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-queue-n">
+<span id="cmdoption-pyfi-ls-queue-name"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;name&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-queue-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of queue</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-queue-t">
+<span id="cmdoption-pyfi-ls-queue-task"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--task</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;task&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-queue-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of task</p>
+</dd></dl>
+
+</div>
 <div class="section" id="pyfi-ls-queues">
 <h4>queues<a class="headerlink" href="#pyfi-ls-queues" title="Permalink to this headline">¶</a></h4>
 <p>List queues</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls queues <span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="pyfi-ls-role">
+<h4>role<a class="headerlink" href="#pyfi-ls-role" title="Permalink to this headline">¶</a></h4>
+<p>List a role</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls role <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-role-n">
+<span id="cmdoption-pyfi-ls-role-name"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;name&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-role-n" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong></p>
+</dd></dl>
+
+</div>
+<div class="section" id="pyfi-ls-roles">
+<h4>roles<a class="headerlink" href="#pyfi-ls-roles" title="Permalink to this headline">¶</a></h4>
+<p>List roles</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls roles <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-roles-p">
+<span id="cmdoption-pyfi-ls-roles-page"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--page</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;page&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-roles-p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-roles-r">
+<span id="cmdoption-pyfi-ls-roles-rows"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--rows</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;rows&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-ls-roles-r" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-ls-roles-a">
+<span id="cmdoption-pyfi-ls-roles-ascend"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ascend</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-ls-roles-a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="pyfi-ls-scheduler">
 <h4>scheduler<a class="headerlink" href="#pyfi-ls-scheduler" title="Permalink to this headline">¶</a></h4>
@@ -1198,7 +1468,7 @@
 </div>
 <div class="section" id="pyfi-ls-user">
 <h4>user<a class="headerlink" href="#pyfi-ls-user" title="Permalink to this headline">¶</a></h4>
-<p>List users</p>
+<p>List a user</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls user <span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -1214,6 +1484,13 @@
 <h4>users<a class="headerlink" href="#pyfi-ls-users" title="Permalink to this headline">¶</a></h4>
 <p>List users</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls users <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pyfi-ls-work">
+<h4>work<a class="headerlink" href="#pyfi-ls-work" title="Permalink to this headline">¶</a></h4>
+<p>List work submissions</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi ls work <span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -1596,6 +1873,61 @@
 
 </div>
 </div>
+<div class="section" id="pyfi-user">
+<h3>user<a class="headerlink" href="#pyfi-user" title="Permalink to this headline">¶</a></h3>
+<p>User commands</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi user <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<div class="section" id="pyfi-user-add">
+<h4>add<a class="headerlink" href="#pyfi-user-add" title="Permalink to this headline">¶</a></h4>
+<p>Add roles and privileges to a user</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi user add <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-user-add-u">
+<span id="cmdoption-pyfi-user-add-user"></span><span class="sig-name descname"><span class="pre">-u</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--user</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;user&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-user-add-u" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-user-add-r">
+<span id="cmdoption-pyfi-user-add-role"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--role</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;role&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-user-add-r" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-user-add-p">
+<span id="cmdoption-pyfi-user-add-privilege"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--privilege</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;privilege&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-user-add-p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="pyfi-user-remove">
+<h4>remove<a class="headerlink" href="#pyfi-user-remove" title="Permalink to this headline">¶</a></h4>
+<p>Remove roles and privileges from a user</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi user remove <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-user-remove-u">
+<span id="cmdoption-pyfi-user-remove-user"></span><span class="sig-name descname"><span class="pre">-u</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--user</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;user&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-user-remove-u" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-user-remove-r">
+<span id="cmdoption-pyfi-user-remove-role"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--role</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;role&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-user-remove-r" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-user-remove-p">
+<span id="cmdoption-pyfi-user-remove-privilege"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--privilege</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;privilege&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-user-remove-p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
 <div class="section" id="pyfi-web">
 <h3>web<a class="headerlink" href="#pyfi-web" title="Permalink to this headline">¶</a></h3>
 <p>Web server admin</p>
@@ -1630,6 +1962,20 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi worker <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
 </div>
+<div class="section" id="pyfi-worker-kill">
+<h4>kill<a class="headerlink" href="#pyfi-worker-kill" title="Permalink to this headline">¶</a></h4>
+<p>Kill a pyfi worker</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyfi worker <span class="nb">kill</span> <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-worker-kill-n">
+<span id="cmdoption-pyfi-worker-kill-name"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;name&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-worker-kill-n" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> Name of worker</p>
+</dd></dl>
+
+</div>
 <div class="section" id="pyfi-worker-start">
 <h4>start<a class="headerlink" href="#pyfi-worker-start" title="Permalink to this headline">¶</a></h4>
 <p>Start a pyfi worker</p>
@@ -1653,6 +1999,12 @@
 <dt class="sig sig-object std" id="cmdoption-pyfi-worker-start-s">
 <span id="cmdoption-pyfi-worker-start-skip-venv"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--skip-venv</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pyfi-worker-start-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Skip building the virtual environment</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pyfi-worker-start-q">
+<span id="cmdoption-pyfi-worker-start-queue"></span><span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--queue</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;queue&gt;</span></span><a class="headerlink" href="#cmdoption-pyfi-worker-start-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum number of messages on worker internal queue</p>
 </dd></dl>
 
 </div>

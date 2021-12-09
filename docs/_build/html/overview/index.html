@@ -213,7 +213,7 @@
 <li><p><strong>Simplified Workflow Functions</strong> - Parallel, Pipeline, Funnel</p></li>
 <li><p><strong>Powerful Compute Composition</strong> - Build at-scale data and compute flows using CLI, UI or API</p></li>
 <li><p><strong>Streaming Compute</strong> - Real-time streaming compute data flows</p></li>
-<li><p><strong>Secure &amp; Trusted Code Exceution</strong> - No client-side code marshalling or serialization. Code is loaded from the network side via git repositories into isolated virtual environments</p></li>
+<li><p><strong>Secure &amp; Trusted Code Execution</strong> - No client-side code marshalling or serialization. Code is loaded from the network side via git repositories into isolated virtual environments</p></li>
 <li><p><strong>Micro-Scheduling</strong> - Efficient task scheduling and 100% hardware utilization</p></li>
 <li><p><strong>Next-Gen User Interface</strong> - Quickly build out at-scale HPC data flows with simple and intuitive interfaces.</p></li>
 </ul>
@@ -328,7 +328,7 @@ These qualities of service are completely invisible to the application or user s
 <div class="section" id="high-level-architecture">
 <h2>High Level Architecture<a class="headerlink" href="#high-level-architecture" title="Permalink to this headline">¶</a></h2>
 <p>PYFI’s high level architecture can be seen in the diagram below. Central to the architecture is the <strong>PYFI Model Database</strong> which stores the relational meta-model for the PYFI compute network. This database provides the <em>single source of truth</em> for the runtime operation of the distributed architecture.
-Equally as important is the <strong>reliable message broker</strong> which is the heart of PYFI’s execution model. Workflows execute functions just like any other python code, but those functions trigger persistent requests for PYFI to execute a remote task when the compute resources are available. The message broker handles  all the runtime orchestration with compute notes to carry out tasks.</p>
+Equally as important is the <strong>reliable message broker</strong> which is the heart of PYFI’s execution model. Workflows execute functions just like any other python code, but those functions trigger persistent requests for PYFI to execute a remote task when the compute resources are available. The message broker handles  all the runtime orchestration with compute nodes to carry out tasks.</p>
 <div class="figure align-center" id="id6">
 <img alt="../_images/architecture2.png" src="../_images/architecture2.png" />
 <p class="caption"><span class="caption-text">PYFI System Architecture</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
