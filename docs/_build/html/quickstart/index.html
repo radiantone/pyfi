@@ -1,79 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Quickstart &mdash; PYFI 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/override.css" type="text/css" />
-
-  
-  
+  <title>Quickstart &mdash; ElasticCode 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/override.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon2.ico"/>
-  
-
-  
-  
-
-  
-
-  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Architecture" href="../architecture/index.html" />
+    <link rel="next" title="Data Flows" href="../dataflows/index.html" />
     <link rel="prev" title="Install" href="../install/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #abbcc3" >
-          
-
-          
             <a href="../index.html">
-          
-
-          
-            
-            <img src="../_static/pyfi-mono.svg" class="logo" alt="Logo"/>
-          
+            <img src="../_static/flow.svg" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -81,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Overview</a></li>
@@ -101,9 +48,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Install</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#bringing-up-the-stack">Bringing up the Stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configuring-pyfi-cli">Configuring PYFI CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-lambda-flow">Configuring Lambda Flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initialize-the-database">Initialize the Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-pyfi-cli">The PYFI CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-flow-cli">The Flow CLI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-your-first-flow">Creating Your First Flow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-sockets">Creating Sockets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#defining-socket-functions">Defining Socket Functions</a></li>
@@ -113,6 +60,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#running-a-parallel-workflow">Running a Parallel Workflow</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Flows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dataflows/index.html">Data Flows</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Technology</span></p>
 <ul>
@@ -133,94 +84,53 @@
 <li class="toctree-l1"><a class="reference internal" href="../discord/index.html">Discord</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #abbcc3" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">PYFI</a>
-        
+          <a href="../index.html">ElasticCode</a>
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Quickstart</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/quickstart/index.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="quickstart">
-<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="bringing-up-the-stack">
-<h2>Bringing up the Stack<a class="headerlink" href="#bringing-up-the-stack" title="Permalink to this headline">¶</a></h2>
+<section id="bringing-up-the-stack">
+<h2>Bringing up the Stack<a class="headerlink" href="#bringing-up-the-stack" title="Permalink to this headline"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose up
 </pre></div>
 </div>
-</div>
-<div class="section" id="configuring-pyfi-cli">
-<h2>Configuring PYFI CLI<a class="headerlink" href="#configuring-pyfi-cli" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi --config
+</section>
+<section id="configuring-lambda-flow">
+<h2>Configuring Lambda Flow<a class="headerlink" href="#configuring-lambda-flow" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ flow --config
 Database connection URI <span class="o">[</span>postgresql://postgres:pyfi101@phoenix:5432/pyfi<span class="o">]</span>:
 Result backend URI <span class="o">[</span>redis://localhost<span class="o">]</span>:
 Message broker URI <span class="o">[</span>pyamqp://localhost<span class="o">]</span>:
 Configuration file created at /home/user/pyfi.ini
 </pre></div>
 </div>
-</div>
-<div class="section" id="initialize-the-database">
-<h2>Initialize the Database<a class="headerlink" href="#initialize-the-database" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi db init
+</section>
+<section id="initialize-the-database">
+<h2>Initialize the Database<a class="headerlink" href="#initialize-the-database" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ flow db init
 Enabling security on table action
 Enabling security on table event
 Enabling security on table flow
@@ -252,20 +162,20 @@ Enabling security on table calls_events
 Database create all schemas <span class="k">done</span>.
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-pyfi-cli">
-<h2>The PYFI CLI<a class="headerlink" href="#the-pyfi-cli" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi
-Usage: pyfi <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</section>
+<section id="the-flow-cli">
+<h2>The Flow CLI<a class="headerlink" href="#the-flow-cli" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ flow
+Usage: flow <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
 
-Pyfi CLI <span class="k">for</span> managing the pyfi network
+Flow CLI <span class="k">for</span> managing the pyfi network
 
 Options:
 --debug         Debug switch
 -d, --db TEXT   Database URI
 --backend TEXT  Task queue backend
 --broker TEXT   Message broker URI
--i, --ini TEXT  PYFI .ini configuration file
+-i, --ini TEXT  Flow .ini configuration file
 -c, --config    Configure pyfi
 --help          Show this message and exit.
 
@@ -287,35 +197,35 @@ whoami     Database login user
 worker     Run pyfi worker
 </pre></div>
 </div>
-</div>
-<div class="section" id="creating-your-first-flow">
-<h2>Creating Your First Flow<a class="headerlink" href="#creating-your-first-flow" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-your-first-flow">
+<h2>Creating Your First Flow<a class="headerlink" href="#creating-your-first-flow" title="Permalink to this headline"></a></h2>
 <p>Let’s look at the sequence of CLI commands needed to build out our flow infrastructure and execute a task. From scratch!
 First thing we do below is create a queue. This provides the persistent message broker the definition it needs to allocate a <code class="docutils literal notranslate"><span class="pre">message</span> <span class="pre">queue</span></code> by the same name for holding task messages.</p>
 <p>Next we create a processor, which refers to our gitrepo and defines the module within that codebase we want to expose. It also defines the host where the processor should be run, but that is optional.
 We specific a concurrency value of 5 that indicates <em>the scale</em> for our processor. This means it will seek to occupy 5 CPUs, allowing it to run in parallel and respond to high-volume message traffic better.</p>
 <p>Then we create sockets and attach them to our processor. The socket tells pyfi what specific python function we want to receive messages for and what queue it should use. Lastly, it indicates what processor to be attached to.</p>
 <p>Finally, we can run our task and get the result.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add queue -n pyfi.queue1 -t direct
-$ pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -h localhost -c <span class="m">5</span>
-$ pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
-$ pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
-$ pyfi task run --socket pyfi.processors.sample.do_this --data <span class="s2">&quot;[&#39;some data&#39;]&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ flow add queue -n pyfi.queue1 -t direct
+$ flow add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -h localhost -c <span class="m">5</span>
+$ flow add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
+$ flow add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
+$ flow task run --socket pyfi.processors.sample.do_this --data <span class="s2">&quot;[&#39;some data&#39;]&quot;</span>
 Do this: <span class="o">[</span><span class="s1">&#39;some data&#39;</span><span class="o">]</span>
 </pre></div>
 </div>
-<div class="section" id="creating-sockets">
-<h3>Creating Sockets<a class="headerlink" href="#creating-sockets" title="Permalink to this headline">¶</a></h3>
+<section id="creating-sockets">
+<h3>Creating Sockets<a class="headerlink" href="#creating-sockets" title="Permalink to this headline"></a></h3>
 <p>Sockets represent addressable endpoints for python functions hosted by a processor. Remember, the processor points to a gitrepo and defines a python module within that repo.
 The socket defines the task (or python function) within the processor python module. Thus, a single processor can have many sockets associated with it. Sockets also declare a queue they will use to pull their requests from.
 This allows calls to tasks to be durable and reliable.</p>
 <p>The following extract from the above flow defines a socket, gives it a name <code class="docutils literal notranslate"><span class="pre">pyfi.processors.sample.do_something</span></code>, declares the queue <code class="docutils literal notranslate"><span class="pre">pyfi.queue1</span></code>, associates it with processor named <code class="docutils literal notranslate"><span class="pre">proc1</span></code> and represents the python function/task <code class="docutils literal notranslate"><span class="pre">do_something</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ flow add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
 </pre></div>
 </div>
-</div>
-<div class="section" id="defining-socket-functions">
-<h3>Defining Socket Functions<a class="headerlink" href="#defining-socket-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="defining-socket-functions">
+<h3>Defining Socket Functions<a class="headerlink" href="#defining-socket-functions" title="Permalink to this headline"></a></h3>
 <p>Once you’ve built out your flow and infrastructure to support it, you can create convenient types that represent your python functions via the Socket class.</p>
 <p>For the parallel flow above, we import the .p (or partial) signature from this file, which comes from our Socket we created earlier named <code class="docutils literal notranslate"><span class="pre">pyfi.processors.sample.do_something</span></code>.
 Remember, the socket captures the module (from its parent Processor) and function name within that module you want to run. Think of it like an endpoint with a queue in front of it.</p>
@@ -330,9 +240,9 @@ Remember, the socket captures the module (from its parent Processor) and functio
 </pre></div>
 </div>
 <p>Once we’ve created our function definitions above, we can use them like normal python functions as in the parallel workflow below!</p>
-</div>
-<div class="section" id="executing-socket-functions">
-<h3>Executing Socket Functions<a class="headerlink" href="#executing-socket-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="executing-socket-functions">
+<h3>Executing Socket Functions<a class="headerlink" href="#executing-socket-functions" title="Permalink to this headline"></a></h3>
 <p>Executing socket functions from python is very easy. Since we can create the socket ahead of time, we only need to refer to it by name as above.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfi.client.examples.api</span> <span class="kn">import</span> <span class="n">do_something_p</span> <span class="k">as</span> <span class="n">do_something</span>
 
@@ -340,12 +250,12 @@ Remember, the socket captures the module (from its parent Processor) and functio
 </pre></div>
 </div>
 <p>The just invoke the function reference as you normally would. If you are using the function within a parallel API structure such as <code class="docutils literal notranslate"><span class="pre">parallel</span></code>, <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>, <code class="docutils literal notranslate"><span class="pre">funnel</span></code> etc then you should use the <code class="docutils literal notranslate"><span class="pre">partial</span></code> (.p, _p) version of the function signature.
-This allows PYFI to add arguments to the task when it is invoked. The invocation is deferred so it doesn’t happen at the time you declare your workflow. The reason is because your task will execute on thos remote CPU at a time when the workflow reaches that task.
+This allows ElasticCode to add arguments to the task when it is invoked. The invocation is deferred so it doesn’t happen at the time you declare your workflow. The reason is because your task will execute on thos remote CPU at a time when the workflow reaches that task.
 So the .p partial is a <code class="docutils literal notranslate"><span class="pre">signature</span></code> for your task in that respect.</p>
-</div>
-</div>
-<div class="section" id="running-a-parallel-workflow">
-<h2>Running a Parallel Workflow<a class="headerlink" href="#running-a-parallel-workflow" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="running-a-parallel-workflow">
+<h2>Running a Parallel Workflow<a class="headerlink" href="#running-a-parallel-workflow" title="Permalink to this headline"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfi.client.api</span> <span class="kn">import</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">funnel</span>
 <span class="kn">from</span> <span class="nn">pyfi.client.example.api</span> <span class="kn">import</span> <span class="n">do_something_p</span> <span class="k">as</span> <span class="n">do_something</span>
 
@@ -378,55 +288,38 @@ So the .p partial is a <code class="docutils literal notranslate"><span class="p
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FUNNEL: &quot;</span><span class="p">,</span> <span class="n">_funnel</span><span class="p">(</span><span class="n">do_something</span><span class="p">(</span><span class="s2">&quot;Four&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../architecture/index.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../install/index.html" class="btn btn-neutral float-left" title="Install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dataflows/index.html" class="btn btn-neutral float-right" title="Data Flows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Darren Govoni.
-
-    </p>
+    <p>&#169; Copyright 2022-2026, elasticcode.ai.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -12,12 +12,12 @@ Bringing up the Stack
 
    $ docker-compose up
 
-Configuring PYFI CLI
---------------------
+Configuring Lambda Flow
+-----------------------
 
 .. code-block:: bash
 
-   $ pyfi --config
+   $ flow --config
    Database connection URI [postgresql://postgres:pyfi101@phoenix:5432/pyfi]: 
    Result backend URI [redis://localhost]: 
    Message broker URI [pyamqp://localhost]: 
@@ -28,7 +28,7 @@ Initialize the Database
 
 .. code-block:: bash
 
-   $ pyfi db init
+   $ flow db init
    Enabling security on table action
    Enabling security on table event
    Enabling security on table flow
@@ -59,22 +59,22 @@ Initialize the Database
    Enabling security on table calls_events
    Database create all schemas done.
 
-The PYFI CLI
+The Flow CLI
 ------------
 
 .. code-block:: bash
 
-   $ pyfi
-   Usage: pyfi [OPTIONS] COMMAND [ARGS]...
+   $ flow
+   Usage: flow [OPTIONS] COMMAND [ARGS]...
 
-   Pyfi CLI for managing the pyfi network
+   Flow CLI for managing the pyfi network
 
    Options:
    --debug         Debug switch
    -d, --db TEXT   Database URI
    --backend TEXT  Task queue backend
    --broker TEXT   Message broker URI
-   -i, --ini TEXT  PYFI .ini configuration file
+   -i, --ini TEXT  Flow .ini configuration file
    -c, --config    Configure pyfi
    --help          Show this message and exit.
 
@@ -110,11 +110,11 @@ Finally, we can run our task and get the result.
 
 .. code-block:: bash
 
-   $ pyfi add queue -n pyfi.queue1 -t direct
-   $ pyfi add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -h localhost -c 5
-   $ pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
-   $ pyfi add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
-   $ pyfi task run --socket pyfi.processors.sample.do_this --data "['some data']"
+   $ flow add queue -n pyfi.queue1 -t direct
+   $ flow add processor -n proc1 -g https://github.com/radiantone/pyfi-processors -m pyfi.processors.sample -h localhost -c 5
+   $ flow add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
+   $ flow add socket -n pyfi.processors.sample.do_this -q pyfi.queue1 -pn proc1 -t do_this
+   $ flow task run --socket pyfi.processors.sample.do_this --data "['some data']"
    Do this: ['some data']
 
 Creating Sockets
@@ -127,7 +127,7 @@ The following extract from the above flow defines a socket, gives it a name ``py
 
 .. code-block:: bash
 
-   $ pyfi add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
+   $ flow add socket -n pyfi.processors.sample.do_something -q pyfi.queue1 -pn proc1 -t do_something
 
 Defining Socket Functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -163,7 +163,7 @@ Executing socket functions from python is very easy. Since we can create the soc
    do_something("Some text!")
 
 The just invoke the function reference as you normally would. If you are using the function within a parallel API structure such as ``parallel``, ``pipeline``, ``funnel`` etc then you should use the ``partial`` (.p, _p) version of the function signature.
-This allows PYFI to add arguments to the task when it is invoked. The invocation is deferred so it doesn't happen at the time you declare your workflow. The reason is because your task will execute on thos remote CPU at a time when the workflow reaches that task.
+This allows ElasticCode to add arguments to the task when it is invoked. The invocation is deferred so it doesn't happen at the time you declare your workflow. The reason is because your task will execute on thos remote CPU at a time when the workflow reaches that task.
 So the .p partial is a ``signature`` for your task in that respect.
 
 Running a Parallel Workflow

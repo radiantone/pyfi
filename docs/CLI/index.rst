@@ -1,9 +1,10 @@
+.. _CLI:
 
 CLI
 ================================
  
 .. click:: pyfi.cli:cli
-   :prog: pyfi
+   :prog: flow
    :show-nested:
 
 .. toctree::

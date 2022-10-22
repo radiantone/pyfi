@@ -6,64 +6,74 @@ Examples
  
 
 .. code-block:: bash
-      :caption: The 'pyfi' command is the single command for building and managing a PYFI network.
+      :caption: The 'flow' command is the single command for building and managing a ElasticCode network.
 
-      $ pyfi
-      Usage: pyfi [OPTIONS] COMMAND [ARGS]...
+      $ flow
+      Usage: flow [OPTIONS] COMMAND [ARGS]...
 
-      Pyfi CLI for managing the pyfi network
+        CLI for creating & managing flow networks
 
       Options:
-      --debug         Debug switch
-      -d, --db TEXT   Database URI
-      --backend TEXT  Task queue backend
-      --broker TEXT   Message broker URI
-      -i, --ini TEXT  PYFI .ini configuration file
-      -c, --config    Configure pyfi
-      --help          Show this message and exit.
+        --debug              Debug switch
+        -d, --db TEXT        Database URI
+        --backend TEXT       Task queue backend
+        --broker TEXT        Message broker URI
+        -a, --api TEXT       Message broker API URI
+        -u, --user TEXT      Message broker API user
+        -p, --password TEXT  Message broker API password
+        -i, --ini TEXT       flow .ini configuration file
+        -c, --config         Configure pyfi
+        --help               Show this message and exit.
 
       Commands:
-      add        Add an object to the database
-      agent      Run pyfi agent
-      api        API server admin
-      db         Database operations
-      delete     Delete an object from the database
-      listen     Listen to a processor output
-      ls         List database objects and their relations
-      node       Node management operations
-      proc       Run or manage processors
-      scheduler  Scheduler management commands
-      task       Pyfi task management
-      update     Update a database object
-      web        Web server admin
-      whoami     Database login user
-      worker     Run pyfi worker
+        add        Add an object to the database
+        agent      Commands for remote agent management
+        api        API server admin
+        compose    Manage declarative infrastructure files
+        db         Database operations
+        delete     Delete an object from the database
+        listen     Listen to a processor output
+        login      Log into flow CLI
+        logout     Logout current user
+        ls         List database objects and their relations
+        network    Network operations
+        node       Node management operations
+        proc       Run or manage processors
+        scheduler  Scheduler management commands
+        task       Pyfi task management
+        update     Update a database object
+        user       User commands
+        web        Web server admin
+        whoami     Database login user
+        worker     Run pyfi worker
+
 
 Database
 -----------------
 .. code-block:: bash
-      :caption: PYFI database sub-commands
+      :caption: Flow database sub-commands
 
-      $ pyfi db
-      Usage: pyfi db [OPTIONS] COMMAND [ARGS]...
+      $ flow db
+      Usage: flow db [OPTIONS] COMMAND [ARGS]...
 
-      Database operations
+        Database operations
 
       Options:
-      --help  Show this message and exit.
+        --help  Show this message and exit.
 
       Commands:
-      drop     Drop all database tables
-      init     Initialize database tables
-      json     Dump the database to JSON
-      migrate  Perform database migration/upgrade
-      rebuild  Drop and rebuild database tables
+        drop     Drop all database tables
+        init     Initialize database tables
+        json     Dump the database to JSON
+        migrate  Perform database migration/upgrade
+        rebuild  Drop and rebuild database tables
+
 
 Objects
 -------------------------
 
-There are numerous objects within a PYFI network. Some are infrastructure related, others are service related. Using the PYFI CLI you create, update and manage these objects in the database, which acts as a **single source of truth** for the entire PYFI network.
-All the deployed PYFI services (e.g. agents) *react* to changes in the PYFI database. So you could say that PYFI is *reactive* on a distributed, network-scale.
+There are numerous objects within an ElasticCode network. Some are infrastructure related, others are service related. Using the ElasticCode CLI you create, update and manage these objects in the database, which acts as a **single source of truth** for the entire ElasticCode network.
+All the deployed ElasticCode services (e.g. agents) *react* to changes in the ElasticCode database. So you could say that ElasticCode is *reactive* on a distributed, network-scale.
 
 Some of the system objects and CLI commands are shown below.
 
@@ -73,16 +83,17 @@ Queues
 .. code-block:: bash
       :caption: Add a queue to the database
 
-      $ pyfi add queue --help
-      Usage: pyfi add queue [OPTIONS]
+      $ flow add queue --help
+      Usage: flow add queue [OPTIONS]
 
-      Add queue object to the database
+        Add queue object to the database
 
       Options:
-      -n, --name TEXT                 [required]
-      -t, --type [topic|direct|fanout]
-                                       [default: direct; required]
-      --help                          Show this message and exit.
+        -n, --name TEXT                 [required]
+        -t, --type [topic|direct|fanout]
+                                        [default: direct; required]
+        --help                          Show this message and exit.
+
 
 Processors
 -----------------------
@@ -90,45 +101,53 @@ Processors
 .. code-block:: bash
       :caption: Add a processor to the database
 
-      $ pyfi add processor --help
-      Usage: pyfi add processor [OPTIONS]
+      $ flow add processor --help
+      Usage: flow add processor [OPTIONS]
 
-      Add processor to the database
+        Add processor to the database
 
       Options:
-      -n, --name TEXT               Name of this processor  [required]
-      -m, --module TEXT             Python module (e.g. some.module.path
-                                    [required]
+        -n, --name TEXT               Name of this processor  [required]
+        -m, --module TEXT             Python module (e.g. some.module.path
+                                      [required]
+        -h, --hostname TEXT           Target server hostname
+        -w, --workers INTEGER         Number of worker tasks
+        -r, --retries INTEGER         Number of retries to invoke this processor
+        -g, --gitrepo TEXT            Git repo URI  [required]
+        -c, --commit TEXT             Git commit id for processor code
+        -rs, --requested_status TEXT  The requested status for this processor
+        -b, --beat                    Enable the beat scheduler
+        -br, --branch TEXT            Git branch to be used for checkouts
+        -p, --password TEXT           Password to access this processor
+        -rq, --requirements TEXT      requirements.txt file
+        -e, --endpoint TEXT           API endpoint path
+        -a, --api BOOLEAN             Has an API endpoint
+        -cs, --cpus INTEGER           Number of CPUs for default deployment
+        -d, --deploy                  Enable the beat scheduler
+        -mp, --modulepath TEXT        Relative repo path to python module file
+        --help                        Show this message and exit.
 
-      -h, --hostname TEXT           Target server hostname
-      -w, --workers INTEGER         Number of worker tasks
-      -r, --retries INTEGER         Number of retries to invoke this processor
-      -g, --gitrepo TEXT            Git repo URI  [required]
-      -c, --commit TEXT             Git commit id for processor code
-      -rs, --requested_status TEXT  The requested status for this processor
-      -b, --beat                    Enable the beat scheduler
-      -br, --branch TEXT            Git branch to be used for checkouts
-      --help                        Show this message and exit.
 
 .. code-block:: bash
       :caption: Specific processor subcommands
 
-      $ pyfi proc
-      Usage: pyfi proc [OPTIONS] COMMAND [ARGS]...
+      $ flow proc
+      Usage: flow proc [OPTIONS] COMMAND [ARGS]...
 
-      Run or manage processors
+        Run or manage processors
 
       Options:
-      --id TEXT  ID of processor
-      --help     Show this message and exit.
+        --id TEXT  ID of processor
+        --help     Show this message and exit.
 
       Commands:
-      pause    Pause a processor
-      remove   Remove a processor
-      restart  Start a processor
-      resume   Pause a processor
-      start    Start a processor
-      stop     Stop a processor
+        pause    Pause a processor
+        remove   Remove a processor
+        restart  Start a processor
+        resume   Pause a processor
+        start    Start a processor
+        stop     Stop a processor
+
 
 Calls
 -----
@@ -136,22 +155,27 @@ Calls
 .. code-block:: bash
       :caption: Call subcommands
 
-      $ pyfi ls calls --help
-      Usage: pyfi ls calls [OPTIONS]
+      $ flow ls calls --help
+      Usage: flow ls calls [OPTIONS]
 
-      List queues
+        List calls
 
       Options:
-      -p, --page INTEGER
-      -r, --rows INTEGER
-      -a, --ascend
-      --help              Show this message and exit.
+        -p, --page INTEGER
+        -r, --rows INTEGER
+        -u, --unfinished
+        -a, --ascend
+        -i, --id
+        -t, --tracking
+        -tk, --task
+        --help              Show this message and exit.
+
 
 
 .. code-block:: bash
-      :caption: pyfi ls calls
+      :caption: flow ls calls
       
-      $ pyfi ls calls
+      $ flow ls calls
       +------+-----+-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
       | Page | Row |                 Name                |                  ID                  |  Owner   |        Last Updated        |                Socket               |          Started           |          Finished          |  State   |
       +------+-----+-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
@@ -169,10 +193,10 @@ Calls
       Page 1 of 383 of 3830 total records
 
 .. code-block:: bash
-      :caption: pyfi ls call --help
+      :caption: flow ls call --help
 
-      $ pyfi ls call --help
-      Usage: pyfi ls call [OPTIONS]
+      $ flow ls call --help
+      Usage: flow ls call [OPTIONS]
 
       List details about a call record
 
@@ -186,9 +210,9 @@ Calls
       --help           Show this message and exit.
 
 .. code-block:: bash
-      :caption: pyfi ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e
+      :caption: flow ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e
       
-      $ pyfi ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e
+      $ flow ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e
       +-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
       |                 Name                |                  ID                  |  Owner   |        Last Updated        |                Socket               |          Started           |          Finished          |  State   |
       +-------------------------------------+--------------------------------------+----------+----------------------------+-------------------------------------+----------------------------+----------------------------+----------+
@@ -210,9 +234,9 @@ Calls
       +----------+--------------------------------------+----------+----------------------------+-----------------------------------------------------+
 
 .. code-block:: bash
-      :caption: pyfi ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e --tree
+      :caption: flow ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e --tree
 
-      $ pyfi ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e --tree
+      $ flow ls call --id e3bf09c5-ae45-4772-b301-c394acae3c4e --tree
       pyfi.processors.sample.do_something                   
             └────────────────────┐                        
                      pyfi.processors.sample.do_this    
@@ -226,8 +250,8 @@ You can provide your own custom class to receive the results which is designed t
 .. code-block:: bash
       :caption: Messages will be displayed as they are generated within the network.
 
-      $ pyfi listen --help
-      Usage: pyfi listen [OPTIONS]
+      $ flow listen --help
+      Usage: flow listen [OPTIONS]
 
       Listen to a processor output
 
@@ -236,7 +260,7 @@ You can provide your own custom class to receive the results which is designed t
       -c, --channel TEXT  Listen channel (e.g. task, log, etc)  [required]
       -a, --adaptor TEXT  Adaptor class function (e.g. my.module.class.function)
       --help              Show this message and exit.
-      $ pyfi listen --name pyfi.queue1.proc1 --channel task
+      $ flow listen --name pyfi.queue1.proc1 --channel task
       Listening to pyfi.queue1.proc1
       {'type': 'psubscribe', 'pattern': None, 'channel': b'pyfi.queue1.proc1.task', 'data': 1}
       {'type': 'pmessage', 'pattern': b'pyfi.queue1.proc1.task', 'channel': b'pyfi.queue1.proc1.task', 'data': b'{"channel": "task", "state": "received", "date": "2021-09-13 19:37:20.094443", "room": "pyfi.queue1.proc1"}'}
@@ -247,12 +271,12 @@ Running an Agent
 ----------------
 
 .. code-block:: bash
-      :caption: PYFI agent subcommand
+      :caption: FLOW agent subcommand
 
-      $ pyfi agent 
-      Usage: pyfi agent [OPTIONS] COMMAND [ARGS]...
+      $ flow agent
+      Usage: flow agent [OPTIONS] COMMAND [ARGS]...
 
-      Run pyfi agent
+      Run flow agent
 
       Options:
       --help  Show this message and exit.
@@ -262,35 +286,40 @@ Running an Agent
 
 
 .. code-block:: bash
-      :caption: PYFI agent subcommand
+      :caption: Flow agent subcommand
 
-      $ pyfi agent start --help
-      Usage: pyfi agent start [OPTIONS]
+      $ flow agent start --help
+      Usage: flow agent start [OPTIONS]
 
-      Run pyfi agent server
+        Start an agent
 
       Options:
-      -p, --port INTEGER  Listen port
-      --clean             Remove work directories before launch
-      -b, --backend TEXT  Message backend URI
-      -r, --broker TEXT   Message broker URI
-      -c, --config TEXT   Config module.object import (e.g.
-                        path.to.module.MyConfigClass
+        -p, --port INTEGER         Healthcheck port
+        --clean                    Remove work directories before launch
+        -b, --backend TEXT         Message backend URI
+        -r, --broker TEXT          Message broker URI
+        -n, --name TEXT            Hostname for this agent to use
+        -c, --config TEXT          Config module.object import (e.g.
+                                   path.to.module.MyConfigClass
+        -q, --queues               Run the queue monitor only
+        -u, --user TEXT            Run the worker as user
+        -po, --pool INTEGER        Process pool for message dispatches
+        -cp, --cpus INTEGER        Number of CPUs
+        -s, --size INTEGER         Maximum number of messages on worker internal
+                                   queue
+        -h, --host TEXT            Remote hostname to start the agent via ssh
+        -wp, --workerport INTEGER  Healthcheck port for worker
+        --help                     Show this message and exit.
 
-      -q, --queues        Run the queue monitor only
-      -u, --user TEXT     Run the worker as user
-      -p, --pool INTEGER  Process pool for message dispatches
-      -s, --size INTEGER  Maximum number of messages on worker internal queue
-      --help              Show this message and exit.
 
 Roles & Users
 -------------
 
 .. code-block:: bash
-      :caption: PYFI user, role and privilege subcommands
+      :caption: FLOW user, role and privilege subcommands
 
-      $ pyfi add user --help
-      Usage: pyfi add user [OPTIONS]
+      $ flow add user --help
+      Usage: flow add user [OPTIONS]
 
       Add user object to the database
 
@@ -300,8 +329,8 @@ Roles & Users
       -p, --password TEXT  [required]
       --help               Show this message and exit.
 
-      $ pyfi add role --help
-      Usage: pyfi add role [OPTIONS]
+      $ flow add role --help
+      Usage: flow add role [OPTIONS]
 
       Add role object to the database
 
@@ -309,8 +338,8 @@ Roles & Users
       -n, --name TEXT  [required]
       --help           Show this message and exit.
 
-      $ pyfi add privilege --help
-      Usage: pyfi add privilege [OPTIONS]
+      $ flow add privilege --help
+      Usage: flow add privilege [OPTIONS]
 
       Add privilege to the database
 
@@ -324,7 +353,7 @@ Roles & Users
 .. code-block:: bash
       :caption: Creating a user
 
-      $ pyfi add user
+      $ flow add user
       Name: joe
       Email: joe@xyz
       Password: 12345
@@ -334,19 +363,19 @@ Roles & Users
 .. code-block:: bash
       :caption: Creating a role
 
-      $ pyfi add role -n developer
+      $ flow add role -n developer
       bc15ee9d-a208-43a9-82d2-bf0810dc4380:developer:2021-09-15 21:50:40.714192
 
 .. code-block:: bash
       :caption: Adding a privilege to a user
 
-      $ pyfi add privilege -u joe -n ADD_PROCESSOR
+      $ flow add privilege -u joe -n ADD_PROCESSOR
       Privilege added     
 
 .. code-block:: bash
       :caption: List a user with role_privileges
 
-      $ pyfi ls user -n joe
+      $ flow ls user -n joe
       +------+--------------------------------------+----------+---------+
       | Name |                  ID                  |  Owner   |  Email  |
       +------+--------------------------------------+----------+---------+
@@ -362,7 +391,7 @@ Roles & Users
 .. code-block:: bash
       :caption: Adding a privilege to a role
 
-      $ pyfi add privilege -r developer -n ADD_PROCESSOR
+      $ flow add privilege -r developer -n ADD_PROCESSOR
       Privilege added    
 
 .. code-block:: bash

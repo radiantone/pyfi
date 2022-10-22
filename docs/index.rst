@@ -1,4 +1,4 @@
-.. PYFI documentation master file, created by
+.. ElasticCode documentation master file, created by
    sphinx-quickstart on Thu Sep  2 05:56:06 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -14,7 +14,13 @@ Documentation Outline
    usecases/index
    install/index
    quickstart/index
-   
+
+.. toctree::
+   :caption: Data Flows
+   :maxdepth: 2
+
+   dataflows/index
+
 .. toctree::
    :caption: Technology
    :maxdepth: 2

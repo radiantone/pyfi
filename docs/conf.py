@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'PYFI'
-copyright = '2021, Darren Govoni'
+project = 'ElasticCode'
+copyright = '2022-2026, elasticcode.ai'
 author = 'Darren Govoni'
 
 # The full version, including alpha/beta/rc tags
@@ -55,7 +55,7 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_logo = 'images/pyfi-mono.svg'
+html_logo = 'images/flow.svg'
 #html_favicon = 'pyfi16.ico'
 html_favicon = 'images/favicon2.ico'
 
@@ -80,7 +80,7 @@ html_theme_options = {
     'repo_name': 'Material for Sphinx',
     'html_minify': True,
     'css_minify': True,
-    'nav_title': 'Welcome to PYFI',
+    'nav_title': 'Welcome to ElasticCode',
     'globaltoc_depth': 2
 }
 '''

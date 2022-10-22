@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objects &mdash; ElasticCode 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/override.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon2.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Lambda" href="../lambda/index.html" />
+    <link rel="prev" title="Decorators" href="../decorators/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #abbcc3" >
+            <a href="../../../index.html">
+            <img src="../../../_static/flow.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../designgoals/index.html">Goals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart/index.html">Quickstart</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Flows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dataflows/index.html">Data Flows</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technology</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../servers/index.html">Servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CLI/index.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ui/index.html">UI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../CLI/index.html">CLI</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../decorators/index.html">Decorators</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Objects</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lambda/index.html">Lambda</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ORM/index.html">ORM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../REST/index.html">REST</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stack/index.html">Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../discord/index.html">Discord</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #abbcc3" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ElasticCode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">API</a> &raquo;</li>
+          <li><a href="../index.html">Python</a> &raquo;</li>
+      <li>Objects</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/api/python/objects/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="objects">
+<h1>Objects<a class="headerlink" href="#objects" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">ElasticCode Python Object API
+import json</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">pyfi.client.api</span> <span class="kn">import</span> <span class="n">Plug</span><span class="p">,</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">Socket</span>
+  <span class="kn">from</span> <span class="nn">pyfi.client.user</span> <span class="kn">import</span> <span class="n">USER</span>
+  <span class="kn">from</span> <span class="nn">pyfi.db.model</span> <span class="kn">import</span> <span class="n">AlchemyEncoder</span>
+
+  <span class="c1"># Log in a user first</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;USER&quot;</span><span class="p">,</span> <span class="n">USER</span><span class="p">)</span>
+  <span class="c1"># Create a processor</span>
+  <span class="n">processor</span> <span class="o">=</span> <span class="n">Processor</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;proc1&quot;</span><span class="p">,</span>
+      <span class="n">beat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">module</span><span class="o">=</span><span class="s2">&quot;pyfi.processors.sample&quot;</span><span class="p">,</span>
+      <span class="n">branch</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+      <span class="n">concurrency</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+      <span class="n">gitrepo</span><span class="o">=</span><span class="s2">&quot;https://radiantone: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@github.com/radiantone/pyfi-processors#egg=pyfi-processor&quot;</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="n">processor2</span> <span class="o">=</span> <span class="n">Processor</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;proc2&quot;</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">module</span><span class="o">=</span><span class="s2">&quot;pyfi.processors.sample&quot;</span><span class="p">,</span>
+      <span class="n">hostname</span><span class="o">=</span><span class="s2">&quot;agent1&quot;</span><span class="p">,</span>
+      <span class="n">concurrency</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+      <span class="n">branch</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+      <span class="n">gitrepo</span><span class="o">=</span><span class="s2">&quot;https://radiantone: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@github.com/radiantone/pyfi-processors#egg=pyfi-processor&quot;</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="n">processor3</span> <span class="o">=</span> <span class="n">Processor</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;proc3&quot;</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">module</span><span class="o">=</span><span class="s2">&quot;pyfi.processors.sample&quot;</span><span class="p">,</span>
+      <span class="n">hostname</span><span class="o">=</span><span class="s2">&quot;agent2&quot;</span><span class="p">,</span>
+      <span class="n">concurrency</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+      <span class="n">branch</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+      <span class="n">gitrepo</span><span class="o">=</span><span class="s2">&quot;https://radiantone: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@github.com/radiantone/pyfi-processors#egg=pyfi-processor&quot;</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="c1"># Create a socket on the processor to receive requests for the do_something python function(task)</span>
+  <span class="n">do_something</span> <span class="o">=</span> <span class="n">Socket</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pyfi.processors.sample.do_something&quot;</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+      <span class="n">processor</span><span class="o">=</span><span class="n">processor</span><span class="p">,</span>
+      <span class="n">queue</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pyfi.queue1&quot;</span><span class="p">},</span>
+      <span class="n">task</span><span class="o">=</span><span class="s2">&quot;do_something&quot;</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">do_something</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">AlchemyEncoder</span><span class="p">))</span>
+  <span class="c1"># Create a socket on the processor to receive requests for the do_this python function(task)</span>
+  <span class="n">do_this</span> <span class="o">=</span> <span class="n">Socket</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pyfi.processors.sample.do_this&quot;</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">processor</span><span class="o">=</span><span class="n">processor2</span><span class="p">,</span>
+      <span class="n">queue</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pyfi.queue2&quot;</span><span class="p">},</span>
+      <span class="n">task</span><span class="o">=</span><span class="s2">&quot;do_this&quot;</span><span class="p">,</span>
+  <span class="p">)</span>
+  <span class="n">do_this2</span> <span class="o">=</span> <span class="n">Socket</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pyfi.processors.sample.do_this&quot;</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">processor</span><span class="o">=</span><span class="n">processor3</span><span class="p">,</span>
+      <span class="n">queue</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pyfi.queue3&quot;</span><span class="p">},</span>
+      <span class="n">task</span><span class="o">=</span><span class="s2">&quot;do_this&quot;</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="n">do_something2</span> <span class="o">=</span> <span class="n">Socket</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;proc2.do_something&quot;</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">processor</span><span class="o">=</span><span class="n">processor2</span><span class="p">,</span>
+      <span class="n">queue</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pyfi.queue1&quot;</span><span class="p">},</span>
+      <span class="n">task</span><span class="o">=</span><span class="s2">&quot;do_something&quot;</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="c1"># Create a plug that connects one processor to a socket of another</span>
+  <span class="n">plug</span> <span class="o">=</span> <span class="n">Plug</span><span class="p">(</span>
+      <span class="n">name</span><span class="o">=</span><span class="s2">&quot;plug1&quot;</span><span class="p">,</span>
+      <span class="n">processor</span><span class="o">=</span><span class="n">processor</span><span class="p">,</span>
+      <span class="n">user</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span>
+      <span class="n">source</span><span class="o">=</span><span class="n">do_something</span><span class="p">,</span>
+      <span class="n">queue</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pyfi.queue3&quot;</span><span class="p">},</span>
+      <span class="n">target</span><span class="o">=</span><span class="n">do_this</span><span class="p">,</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../decorators/index.html" class="btn btn-neutral float-left" title="Decorators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../lambda/index.html" class="btn btn-neutral float-right" title="Lambda" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2026, elasticcode.ai.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
