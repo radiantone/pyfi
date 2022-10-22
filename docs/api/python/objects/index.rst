@@ -23,7 +23,7 @@ Objects
             module="pyfi.processors.sample",
             branch="main",
             concurrency=6,
-            gitrepo="https://radiantone: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@github.com/radiantone/pyfi-processors#egg=pyfi-processor",
+            gitrepo="https://user:key@github.com/radiantone/pyfi-processors#egg=pyfi-processor",
         )
 
         processor2 = Processor(
@@ -33,7 +33,7 @@ Objects
             hostname="agent1",
             concurrency=6,
             branch="main",
-            gitrepo="https://radiantone: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@github.com/radiantone/pyfi-processors#egg=pyfi-processor",
+            gitrepo="https://user:key@github.com/radiantone/pyfi-processors#egg=pyfi-processor",
         )
 
         processor3 = Processor(
@@ -43,7 +43,7 @@ Objects
             hostname="agent2",
             concurrency=6,
             branch="main",
-            gitrepo="https://radiantone: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@github.com/radiantone/pyfi-processors#egg=pyfi-processor",
+            gitrepo="https://user:pword@github.com/radiantone/pyfi-processors#egg=pyfi-processor",
         )
 
         # Create a socket on the processor to receive requests for the do_something python function(task)
